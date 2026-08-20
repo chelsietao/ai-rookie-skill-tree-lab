@@ -1,0 +1,17 @@
+{
+  "node_classification": {
+    "accuracy": 0.6143333333333333,
+    "roc_auc": 0.73392090357605
+  },
+  "link_prediction": {
+    "roc_auc": 0.561159
+  },
+  "training_loss": {
+    "first": 0.9376113414764404,
+    "last": 0.8604075312614441
+  },
+  "nodes": 20500,
+  "edges": 99534,
+  "implementation": "manual PyTorch sparse GCN; no PyG or DGL",
+  "scope": "transductive graph with joint node and link-reconstruction losses"
+}
