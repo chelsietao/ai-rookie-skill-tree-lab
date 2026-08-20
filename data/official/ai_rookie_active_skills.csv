@@ -1,0 +1,116 @@
+path,rank
+/AI,1
+/AI/model structure,1
+/AI/model structure/CNN,2
+/AI/model structure/CNN/EfficientNet,1
+/AI/model structure/CNN/MobileNet,1
+/AI/model structure/CNN/ResNet,1
+/AI/model structure/CNN/VGG,1
+/AI/model structure/CNN/object detection,1
+/AI/model structure/GNN,1
+/AI/model structure/KNN,2
+/AI/model structure/MLP,2
+/AI/model structure/autoencoder,1
+/AI/model structure/linear model,1
+/AI/model structure/linear model/lasso,2
+/AI/model structure/linear model/linear regression,2
+/AI/model structure/linear model/logistic regression,2
+/AI/model structure/linear model/ridge,2
+/AI/model structure/RNN,1
+/AI/model structure/RNN/GRU,2
+/AI/model structure/RNN/LSTM,2
+/AI/model structure/SVM,2
+/AI/model structure/SVM/SVC,2
+/AI/model structure/SVM/SVR,2
+/AI/model structure/tree-based,2
+/AI/model structure/tree-based/CatBoost,2
+/AI/model structure/tree-based/decision tree,2
+/AI/model structure/tree-based/Extra-Trees,2
+/AI/model structure/tree-based/random forests,2
+/AI/model structure/tree-based/XGBoost,2
+/AI/model structure/transformer,1
+/AI/model structure/transformer/BERT,1
+/AI/model structure/transformer/GPT,1
+/AI/model structure/transformer/ViT,1
+/AI/application,1
+/AI/application/computer vision,1
+/AI/application/NLP,1
+/AI/learning strategy,1
+/AI/learning strategy/unsupervised learning,1
+/AI/learning strategy/unsupervised learning/clustering,2
+/AI/learning strategy/unsupervised learning/dimension reduction,2
+/AI/learning strategy/pre-training,2
+/AI/learning strategy/supervised learning,2
+/AI/learning strategy/ensemble learning,1
+/AI/training trick,1
+/AI/training trick/data preprocess,2
+/AI/training trick/data preprocess/data augmentation,1
+/AI/training trick/data preprocess/missing value imputation,2
+/AI/training trick/parameter tuning,1
+/AI/training trick/pooling,2
+/AI/training trick/initialization,1
+/AI/training trick/activation,2
+/AI/training trick/attention,2
+/AI/training trick/learning rate scheduling,2
+/AI/training trick/normalization layer,2
+/AI/training trick/validation,2
+/AI/training trick/validation/early stopping,2
+/AI/training trick/validation/cross-validation,2
+/AI/automl,1
+/AI/editor,1
+/AI/editor/colab,2
+/AI/editor/jupyter notebook,2
+/AI/framework,1
+/AI/framework/Keras,2
+/AI/framework/PyTorch,2
+/AI/framework/scikit-learn,2
+/AI/framework/TensorFlow,2
+/AI/tracking,1
+/AI/tracking/TensorBoard,1
+/AI/model structure/CNN/SqueezeNet,1
+/AI/model structure/knn,2
+/AI/model structure/mlp,2
+/AI/training trick/data preprocess/normalization,2
+/AI/training trick/data preprocess/numpy,2
+/AI/training trick/data preprocess/pandas,2
+/AI/training trick/data preprocess/imbalanced-learn,1
+/AI/training trick/data preprocess/sklearn.preprocessing,2
+/AI/training trick/early stopping,2
+/AI/framework/pytorch,2
+/AI/framework/sklearn,2
+/AI/framework/tensorflow,2
+/AI/visualization,1
+/AI/visualization/matplotlib,2
+/AI/visualization/seaborn,2
+/AI/model structure/CNN/convolution,2
+/software engineering,1
+/software engineering/backend,1
+/software engineering/backend/logging,1
+/software engineering/database,1
+/software engineering/database/RDBMS,1
+/software engineering/database/RDBMS/MSSQL,1
+/software engineering/database/RDBMS/MySQL,1
+/software engineering/VCS,1
+/software engineering/VCS/git,2
+/software engineering/VCS/registry,2
+/software engineering/VCS/registry/GitHub,2
+/software engineering/VCS/registry/GitLab,2
+/software engineering/visualization,1
+/software engineering/visualization/matplotlib,2
+/software engineering/visualization/seaborn,2
+/software engineering/data analysis,2
+/software engineering/data analysis/numpy,2
+/software engineering/data analysis/pandas,2
+/software engineering/editor,1
+/software engineering/editor/vi,2
+/software engineering/editor/VS Code,2
+/software engineering/language,1
+/software engineering/language/Python,2
+/software engineering/file format,1
+/software engineering/file format/JSON,2
+/software engineering/file format/YAML,2
+/software engineering/backend/logging/standard output,2
+/software engineering/serialization,1
+/software engineering/serialization/JSON,2
+/software engineering/serialization/YAML,2
+
