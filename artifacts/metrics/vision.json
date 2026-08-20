@@ -1,0 +1,70 @@
+{
+  "classification": {
+    "CNN": {
+      "accuracy": 1.0,
+      "parameters": 3027.0,
+      "fit_seconds": 3.660284249999677,
+      "batch32_inference_ms": 1.8926750002719928
+    },
+    "VGG": {
+      "accuracy": 1.0,
+      "parameters": 9543.0,
+      "fit_seconds": 9.68675879201328,
+      "batch32_inference_ms": 4.224110400537029
+    },
+    "ResNet": {
+      "accuracy": 1.0,
+      "parameters": 15263.0,
+      "fit_seconds": 19.79074558299908,
+      "batch32_inference_ms": 8.102902099926723
+    },
+    "MobileNet": {
+      "accuracy": 1.0,
+      "parameters": 1751.0,
+      "fit_seconds": 14.037704374990426,
+      "batch32_inference_ms": 7.658883350086398
+    },
+    "EfficientNet": {
+      "accuracy": 1.0,
+      "parameters": 2697.0,
+      "fit_seconds": 18.3075597499992,
+      "batch32_inference_ms": 9.851820849871729
+    },
+    "SqueezeNet": {
+      "accuracy": 1.0,
+      "parameters": 3179.0,
+      "fit_seconds": 9.928956709001795,
+      "batch32_inference_ms": 5.432320850377437
+    },
+    "ViT": {
+      "accuracy": 1.0,
+      "parameters": 15331.0,
+      "fit_seconds": 2.412879208000959,
+      "batch32_inference_ms": 1.1038520504371263
+    }
+  },
+  "pooling_ablation": {
+    "max": {
+      "accuracy": 1.0,
+      "parameters": 3027.0,
+      "fit_seconds": 3.669075875004637,
+      "batch32_inference_ms": 1.9196125002054032
+    },
+    "average": {
+      "accuracy": 1.0,
+      "parameters": 3027.0,
+      "fit_seconds": 3.6468109160050517,
+      "batch32_inference_ms": 1.7935292002221104
+    }
+  },
+  "object_detection": {
+    "class_accuracy": 1.0,
+    "mean_iou": 0.8198972940444946,
+    "map_at_50_proxy": 1.0
+  },
+  "augmentation": [
+    "horizontal flip",
+    "Gaussian pixel noise"
+  ],
+  "scope": "educational tiny variants; not canonical full-size ImageNet models"
+}
