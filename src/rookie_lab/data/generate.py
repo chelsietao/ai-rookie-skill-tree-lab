@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+import hashlib
+import io
 import json
+import zipfile
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
@@ -18,6 +21,7 @@ class DataConfig:
     seed: int
     customers: int
     transactions: int
+    views: int
     sequences: int
     texts: int
     images: int
@@ -36,6 +40,27 @@ CATEGORIES = np.array(["food", "home", "beauty", "sports", "books"])
 POSITIVE = ("helpful service", "fast delivery", "great quality", "easy checkout")
 NEGATIVE = ("late delivery", "damaged product", "refund needed", "poor support")
 INTENTS = ("delivery", "refund", "product", "account")
+
+
+def _write_csv_gzip(frame: pd.DataFrame, path: Path) -> None:
+    """Write byte-reproducible gzip by removing the current-time header."""
+    frame.to_csv(
+        path,
+        index=False,
+        compression={"method": "gzip", "compresslevel": 9, "mtime": 0},
+    )
+
+
+def _write_npz(path: Path, **arrays: np.ndarray) -> None:
+    """Write an np.load-compatible archive with fixed ZIP timestamps and ordering."""
+    with zipfile.ZipFile(path, "w") as archive:
+        for name in sorted(arrays):
+            buffer = io.BytesIO()
+            np.save(buffer, arrays[name], allow_pickle=False)
+            info = zipfile.ZipInfo(f"{name}.npy", date_time=(1980, 1, 1, 0, 0, 0))
+            info.compress_type = zipfile.ZIP_DEFLATED
+            info.external_attr = 0o600 << 16
+            archive.writestr(info, buffer.getvalue(), compresslevel=9)
 
 
 def _customers(config: DataConfig, rng: np.random.Generator) -> pd.DataFrame:
@@ -91,6 +116,28 @@ def _transactions(config: DataConfig, customers: pd.DataFrame, rng: np.random.Ge
             "category": category,
             "amount": amount.round(2),
             "is_anomaly": anomaly.astype(int),
+        }
+    )
+
+
+def _views(config: DataConfig, customers: pd.DataFrame, rng: np.random.Generator) -> pd.DataFrame:
+    """Create browse events with a learnable but imperfect conversion mechanism."""
+    n = config.views
+    customer_idx = rng.integers(0, len(customers), n)
+    product_idx = rng.integers(0, config.products, n)
+    dwell = np.clip(rng.lognormal(3.2, 0.75, n), 2, 900)
+    page_depth = rng.integers(1, 9, n)
+    conversion_logit = -4.0 + 0.012 * dwell + 0.18 * page_depth
+    converted = rng.binomial(1, 1 / (1 + np.exp(-conversion_logit)))
+    return pd.DataFrame(
+        {
+            "view_id": [f"view_{i:08d}" for i in range(n)],
+            "customer_id": customers.iloc[customer_idx]["customer_id"].to_numpy(),
+            "product_id": [f"prd_{value:05d}" for value in product_idx],
+            "day": rng.integers(0, 365, n),
+            "dwell_seconds": dwell.round(2),
+            "page_depth": page_depth,
+            "converted": converted,
         }
     )
 
@@ -154,32 +201,55 @@ def generate(config: DataConfig, output: Path) -> dict[str, object]:
     rng = np.random.default_rng(config.seed)
     customers = _customers(config, rng)
     transactions = _transactions(config, customers, rng)
+    views = _views(config, customers, rng)
     sequences, sequence_targets = _sequences(config, rng)
     texts = _texts(config, rng)
     images, image_labels, boxes = _images(config, rng)
-    graph = transactions[["customer_id", "product_id"]].drop_duplicates().reset_index(drop=True)
+    graph = (
+        pd.concat(
+            [transactions[["customer_id", "product_id"]], views[["customer_id", "product_id"]]],
+            ignore_index=True,
+        )
+        .drop_duplicates()
+        .reset_index(drop=True)
+    )
 
-    customers.to_csv(output / "customers.csv.gz", index=False)
-    transactions.to_csv(output / "transactions.csv.gz", index=False)
-    texts.to_csv(output / "support_texts.csv.gz", index=False)
-    graph.to_csv(output / "graph_edges.csv.gz", index=False)
-    np.savez_compressed(output / "sequences.npz", x=sequences, y=sequence_targets)
-    np.savez_compressed(output / "product_images.npz", x=images, y=image_labels)
+    _write_csv_gzip(customers, output / "customers.csv.gz")
+    _write_csv_gzip(transactions, output / "transactions.csv.gz")
+    _write_csv_gzip(views, output / "product_views.csv.gz")
+    _write_csv_gzip(texts, output / "support_texts.csv.gz")
+    _write_csv_gzip(graph, output / "graph_edges.csv.gz")
+    _write_npz(output / "sequences.npz", x=sequences, y=sequence_targets)
+    _write_npz(output / "product_images.npz", x=images, y=image_labels)
     (output / "detection_labels.json").write_text(json.dumps(boxes, indent=2))
 
+    data_files = [
+        "customers.csv.gz",
+        "transactions.csv.gz",
+        "product_views.csv.gz",
+        "support_texts.csv.gz",
+        "graph_edges.csv.gz",
+        "sequences.npz",
+        "product_images.npz",
+        "detection_labels.json",
+    ]
+    checksums = {name: hashlib.sha256((output / name).read_bytes()).hexdigest() for name in data_files}
     manifest: dict[str, object] = {
-        "generator": "rookie-lab-synthetic-v1",
+        "generator": "rookie-lab-synthetic-v2",
+        "dataset_version": f"{config.profile}-{config.seed}-v2",
         "fictional": True,
         "contains_real_pii": False,
         "config": asdict(config),
         "rows": {
             "customers": len(customers),
             "transactions": len(transactions),
+            "views": len(views),
             "sequences": len(sequences),
             "texts": len(texts),
             "images": len(images),
             "graph_edges": len(graph),
         },
+        "sha256": checksums,
         "label_rates": {
             "churn": float(customers["churned"].mean()),
             "transaction_anomaly": float(transactions["is_anomaly"].mean()),

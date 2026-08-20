@@ -13,5 +13,4 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: python -m pip install -e '.[full,dev]'
-      - run: python scripts/reproduce_all.py --profile ci
-
+      - run: python scripts/reproduce_all.py --profile portfolio

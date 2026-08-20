@@ -13,7 +13,7 @@ from sklearn.cluster import DBSCAN, AgglomerativeClustering, KMeans
 from sklearn.decomposition import PCA
 from sklearn.impute import SimpleImputer
 from sklearn.manifold import TSNE
-from sklearn.metrics import silhouette_score
+from sklearn.metrics import adjusted_rand_score, silhouette_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
@@ -47,7 +47,18 @@ def run(data_dir: Path, profile: str, seed: int = 20260820) -> dict[str, object]
             "clusters": int(len(set(labels)) - (1 if -1 in labels else 0)),
             "noise_rate": float(np.mean(labels == -1)),
             "silhouette": _score(features, labels),
+            "cluster_sizes": {str(label): int((labels == label).sum()) for label in sorted(set(labels))},
         }
+
+    repeated_labels = [
+        KMeans(n_clusters=4, n_init=10, random_state=seed + offset).fit_predict(features)
+        for offset in range(5)
+    ]
+    pairwise_ari = [
+        adjusted_rand_score(repeated_labels[left], repeated_labels[right])
+        for left in range(len(repeated_labels))
+        for right in range(left + 1, len(repeated_labels))
+    ]
 
     pca = PCA(n_components=2, random_state=seed).fit_transform(features)
     tsne = TSNE(n_components=2, perplexity=min(30, len(features) // 5), random_state=seed).fit_transform(
@@ -68,6 +79,12 @@ def run(data_dir: Path, profile: str, seed: int = 20260820) -> dict[str, object]
     return {
         "rows": len(sample),
         "clustering": clustering,
+        "stability": {
+            "method": "five K-Means restarts with pairwise adjusted Rand index",
+            "mean_ari": float(np.mean(pairwise_ari)),
+            "min_ari": float(np.min(pairwise_ari)),
+            "pairwise_ari": [float(value) for value in pairwise_ari],
+        },
         "dimension_reduction": {
             "pca_explained_variance": float(
                 PCA(n_components=2).fit(features).explained_variance_ratio_.sum()

@@ -1,6 +1,6 @@
 {
   "tensorboard": {
-    "event_files": 2,
+    "event_files": 5,
     "losses": [
       1.0,
       0.68,
@@ -9,9 +9,30 @@
     ]
   },
   "registry_rows": 1,
+  "registered_artifacts": [
+    {
+      "kind": "tensorboard",
+      "path": "artifacts/tensorboard/demo",
+      "sha256": null
+    }
+  ],
   "compiled_rdbms_dialects": [
     "mssql",
     "mysql",
     "sqlite"
-  ]
+  ],
+  "_run": {
+    "lab": "tracking",
+    "profile": "portfolio",
+    "seed": 20260820,
+    "dataset_version": "portfolio-20260820-v2",
+    "config_path": null,
+    "elapsed_seconds": 0.01877624999906402,
+    "resident_memory_mb": 627.203125,
+    "environment": {
+      "python": "3.12.13",
+      "platform": "macOS-26.5.2-arm64-arm-64bit",
+      "processor": "arm"
+    }
+  }
 }

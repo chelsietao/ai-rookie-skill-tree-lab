@@ -2,10 +2,10 @@ profile: portfolio
 seed: 20260820
 customers: 20000
 transactions: 100000
+views: 50000
 sequences: 10000
 texts: 5000
 images: 5000
 products: 500
 sequence_length: 12
 image_size: 32
-

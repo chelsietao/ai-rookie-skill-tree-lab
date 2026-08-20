@@ -2,10 +2,10 @@ profile: ci
 seed: 20260820
 customers: 800
 transactions: 5000
+views: 3000
 sequences: 600
 texts: 800
 images: 600
 products: 80
 sequence_length: 12
 image_size: 32
-

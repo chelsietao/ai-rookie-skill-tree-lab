@@ -1,0 +1,8 @@
+frameworks: [pytorch, tensorflow, keras]
+activations: [relu, leaky_relu, gelu, sigmoid, tanh]
+initialization: [xavier, kaiming]
+normalization: [none, batch, layer, group]
+optimizers: [sgd, adam, rmsprop]
+schedulers: [warmup, step, cosine]
+early_stopping_patience: 3
+seed: 20260820

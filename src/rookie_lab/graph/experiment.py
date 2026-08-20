@@ -8,6 +8,7 @@ import numpy as np
 import pandas as pd
 import torch
 from sklearn.impute import SimpleImputer
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, roc_auc_score
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -47,6 +48,12 @@ def run(data_dir: Path, profile: str, seed: int = 20260820) -> dict[str, object]
     indices = np.arange(customer_count)
     train_idx, valid_idx = train_test_split(indices, test_size=0.3, stratify=labels, random_state=seed)
     train_tensor, valid_tensor = torch.from_numpy(train_idx), torch.from_numpy(valid_idx)
+    customer_degree = np.bincount([left for left, _ in pairs], minlength=customer_count)
+    baseline_features = np.column_stack([features[:customer_count].numpy(), np.log1p(customer_degree)])
+    baseline = LogisticRegression(max_iter=500, class_weight="balanced", random_state=seed).fit(
+        baseline_features[train_idx], labels[train_tensor].numpy()
+    )
+    baseline_probability = baseline.predict_proba(baseline_features[valid_idx])[:, 1]
     model = GCN(features.shape[1])
     positive = int(labels[train_tensor].sum())
     negative = len(train_tensor) - positive
@@ -95,13 +102,30 @@ def run(data_dir: Path, profile: str, seed: int = 20260820) -> dict[str, object]
     link_pairs = valid_positive + valid_negative
     link_scores = [float((embeddings[left] * embeddings[right]).sum()) for left, right in link_pairs]
     link_labels = [1] * len(valid_positive) + [0] * len(valid_negative)
+    node_degree = np.bincount(np.asarray(pairs).reshape(-1), minlength=len(features))
+    popularity_scores = [
+        float(np.log1p(node_degree[left]) + np.log1p(node_degree[right])) for left, right in link_pairs
+    ]
     return {
         "node_classification": {
             "accuracy": float(accuracy_score(labels[valid_tensor].numpy(), probability >= 0.5)),
             "roc_auc": float(roc_auc_score(labels[valid_tensor].numpy(), probability)),
         },
-        "link_prediction": {"roc_auc": float(roc_auc_score(link_labels, link_scores))},
-        "training_loss": {"first": losses[0], "last": losses[-1]},
+        "traditional_baseline": {
+            "model": "class-weighted logistic regression on tabular features plus node degree",
+            "node_roc_auc": float(roc_auc_score(labels[valid_tensor].numpy(), baseline_probability)),
+        },
+        "link_prediction": {
+            "gcn_roc_auc": float(roc_auc_score(link_labels, link_scores)),
+            "degree_popularity_baseline_roc_auc": float(roc_auc_score(link_labels, popularity_scores)),
+        },
+        "training_loss": {"first": losses[0], "last": losses[-1], "curve": losses},
+        "graph_statistics": {
+            "customer_nodes": customer_count,
+            "product_nodes": len(features) - customer_count,
+            "mean_customer_degree": float(customer_degree.mean()),
+            "density": float(len(pairs) / (customer_count * (len(features) - customer_count))),
+        },
         "nodes": len(features),
         "edges": len(pairs),
         "implementation": "manual PyTorch sparse GCN; no PyG or DGL",

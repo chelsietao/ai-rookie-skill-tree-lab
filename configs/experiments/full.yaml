@@ -1,0 +1,4 @@
+profile: portfolio
+purpose: resume-quality reproducible benchmark
+run: [data, classical, unsupervised, deep, vision, nlp, graph, tracking, tests, lint]
+persist_generated_data: false

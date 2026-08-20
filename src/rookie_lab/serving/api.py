@@ -15,6 +15,7 @@ from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel, Field
 
 from rookie_lab import __version__
+from rookie_lab.tracking.registry import ExperimentRegistry
 
 ROOT = Path(__file__).resolve().parents[3]
 DATA_DIR = Path(os.getenv("ROOKIE_LAB_DATA_DIR", "data/generated/ci"))
@@ -78,6 +79,38 @@ def metrics(lab: str) -> dict[str, object]:
     if not path.exists():
         raise HTTPException(404, "metrics not found")
     return dict(json.loads(path.read_text()))
+
+
+@app.get("/runs")
+def runs() -> dict[str, object]:
+    path = Path("artifacts/tmp/experiment_registry.sqlite")
+    if not path.exists():
+        return {"count": 0, "runs": []}
+    values = ExperimentRegistry(path).list()
+    return {
+        "count": len(values),
+        "runs": [
+            {
+                "run_id": value.run_id,
+                "lab": value.lab,
+                "framework": value.framework,
+                "seed": value.seed,
+                "config": value.config,
+                "metrics": value.metrics,
+            }
+            for value in values
+        ],
+    }
+
+
+@app.get("/runs/{run_id}/artifacts")
+def run_artifacts(run_id: str) -> dict[str, object]:
+    if not run_id.replace("-", "").isalnum():
+        raise HTTPException(400, "invalid run id")
+    path = Path("artifacts/tmp/experiment_registry.sqlite")
+    if not path.exists():
+        return {"run_id": run_id, "artifacts": []}
+    return {"run_id": run_id, "artifacts": ExperimentRegistry(path).artifacts(run_id)}
 
 
 @app.post("/predict/churn")

@@ -54,8 +54,52 @@ def run(data_dir: Path, profile: str, seed: int = 20260820) -> dict[str, object]
 
     study = optuna.create_study(direction="maximize", sampler=optuna.samplers.TPESampler(seed=seed))
     study.optimize(objective, n_trials=3 if profile == "ci" else 8, show_progress_bar=False)
+    grid_history = [
+        {"params": params, "mean_cv_roc_auc": float(score), "rank": int(rank)}
+        for params, score, rank in zip(
+            grid.cv_results_["params"],
+            grid.cv_results_["mean_test_score"],
+            grid.cv_results_["rank_test_score"],
+            strict=True,
+        )
+    ]
+    random_history = [
+        {"params": params, "mean_cv_roc_auc": float(score), "rank": int(rank)}
+        for params, score, rank in zip(
+            random.cv_results_["params"],
+            random.cv_results_["mean_test_score"],
+            random.cv_results_["rank_test_score"],
+            strict=True,
+        )
+    ]
+    optuna_history = [
+        {"trial": trial.number, "value": trial.value, "params": trial.params} for trial in study.trials
+    ]
+    leaderboard = sorted(
+        [
+            {"search": "grid", "score": float(grid.best_score_)},
+            {"search": "random", "score": float(random.best_score_)},
+            {"search": "optuna_tpe", "score": float(study.best_value)},
+        ],
+        key=lambda row: row["score"],
+        reverse=True,
+    )
     return {
-        "grid_search": {"score": float(grid.best_score_), "params": grid.best_params_},
-        "random_search": {"score": float(random.best_score_), "params": random.best_params_},
-        "optuna_tpe": {"score": float(study.best_value), "params": study.best_params},
+        "grid_search": {
+            "score": float(grid.best_score_),
+            "params": grid.best_params_,
+            "history": grid_history,
+        },
+        "random_search": {
+            "score": float(random.best_score_),
+            "params": random.best_params_,
+            "history": random_history,
+        },
+        "optuna_tpe": {
+            "score": float(study.best_value),
+            "params": study.best_params,
+            "history": optuna_history,
+        },
+        "leaderboard": leaderboard,
+        "leakage_control": "all imputation/scaling lives inside each cross-validation Pipeline",
     }
