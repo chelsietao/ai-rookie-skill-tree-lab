@@ -29,6 +29,8 @@ class MLPClassifier(nn.Module):
             normalization = nn.BatchNorm1d(hidden)
         elif norm == "layer":
             normalization = nn.LayerNorm(hidden)
+        elif norm == "group":
+            normalization = nn.GroupNorm(4, hidden)
         elif norm == "none":
             normalization = nn.Identity()
         else:

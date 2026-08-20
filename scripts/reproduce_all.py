@@ -50,6 +50,12 @@ def main() -> None:
         str(metrics / "tracking.json"),
     )
     call(sys.executable, "scripts/build_skill_matrix.py")
+    call(
+        sys.executable,
+        "scripts/build_reproducibility_report.py",
+        "--metrics-dir",
+        str(metrics),
+    )
     call(sys.executable, "-m", "pytest", "-q")
     call(sys.executable, "-m", "ruff", "check", "src", "scripts", "tests")
 

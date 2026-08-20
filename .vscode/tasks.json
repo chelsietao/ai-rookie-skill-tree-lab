@@ -9,6 +9,20 @@
       "problemMatcher": []
     },
     {
+      "label": "Rookie Lab: reproduce portfolio",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/bin/python scripts/reproduce_all.py --profile portfolio",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Rookie Lab: verify notebooks",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/bin/python scripts/build_learning_notebooks.py --check notebooks && ${workspaceFolder}/.venv/bin/python scripts/build_system_notebooks.py --check notebooks",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
       "label": "Rookie Lab: tests",
       "type": "shell",
       "command": "${workspaceFolder}/.venv/bin/python -m pytest",
@@ -24,4 +38,3 @@
     }
   ]
 }
-

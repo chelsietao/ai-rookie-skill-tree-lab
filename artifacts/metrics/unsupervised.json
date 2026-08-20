@@ -5,18 +5,53 @@
       "kmeans": {
         "clusters": 4,
         "noise_rate": 0.0,
-        "silhouette": 0.13419696608782988
+        "silhouette": 0.13419696608782988,
+        "cluster_sizes": {
+          "0": 466,
+          "1": 424,
+          "2": 362,
+          "3": 248
+        }
       },
       "dbscan": {
         "clusters": 3,
         "noise_rate": 0.262,
-        "silhouette": 0.016306535535443055
+        "silhouette": 0.016306535535443055,
+        "cluster_sizes": {
+          "-1": 393,
+          "0": 1041,
+          "1": 55,
+          "2": 11
+        }
       },
       "agglomerative": {
         "clusters": 4,
         "noise_rate": 0.0,
-        "silhouette": 0.0847669424036197
+        "silhouette": 0.0847669424036197,
+        "cluster_sizes": {
+          "0": 757,
+          "1": 307,
+          "2": 167,
+          "3": 269
+        }
       }
+    },
+    "stability": {
+      "method": "five K-Means restarts with pairwise adjusted Rand index",
+      "mean_ari": 0.6042190715042203,
+      "min_ari": 0.35838742935190904,
+      "pairwise_ari": [
+        0.35838742935190904,
+        0.3659121026918928,
+        0.815149375198694,
+        0.369372884920774,
+        0.9806334704219773,
+        0.38829777401864507,
+        0.9750038453327744,
+        0.3967456778992016,
+        0.9922428576802241,
+        0.40044529752611113
+      ]
     },
     "dimension_reduction": {
       "pca_explained_variance": 0.41253645405934725,
@@ -32,21 +67,205 @@
       "score": 0.7776458224614576,
       "params": {
         "model__C": 0.1
-      }
+      },
+      "history": [
+        {
+          "params": {
+            "model__C": 0.1
+          },
+          "mean_cv_roc_auc": 0.7776458224614576,
+          "rank": 1
+        },
+        {
+          "params": {
+            "model__C": 1.0
+          },
+          "mean_cv_roc_auc": 0.7774147235603511,
+          "rank": 2
+        },
+        {
+          "params": {
+            "model__C": 10.0
+          },
+          "mean_cv_roc_auc": 0.7773197106507652,
+          "rank": 3
+        }
+      ]
     },
     "random_search": {
       "score": 0.7775737435372548,
       "params": {
         "model__n_estimators": 100,
         "model__max_depth": 3
-      }
+      },
+      "history": [
+        {
+          "params": {
+            "model__n_estimators": 60,
+            "model__max_depth": null
+          },
+          "mean_cv_roc_auc": 0.7028988462051187,
+          "rank": 8
+        },
+        {
+          "params": {
+            "model__n_estimators": 60,
+            "model__max_depth": 5
+          },
+          "mean_cv_roc_auc": 0.7728470327096737,
+          "rank": 5
+        },
+        {
+          "params": {
+            "model__n_estimators": 100,
+            "model__max_depth": 5
+          },
+          "mean_cv_roc_auc": 0.775650768197237,
+          "rank": 2
+        },
+        {
+          "params": {
+            "model__n_estimators": 100,
+            "model__max_depth": 8
+          },
+          "mean_cv_roc_auc": 0.7745751526637207,
+          "rank": 3
+        },
+        {
+          "params": {
+            "model__n_estimators": 30,
+            "model__max_depth": 3
+          },
+          "mean_cv_roc_auc": 0.7653906045518263,
+          "rank": 6
+        },
+        {
+          "params": {
+            "model__n_estimators": 100,
+            "model__max_depth": null
+          },
+          "mean_cv_roc_auc": 0.7157886363337912,
+          "rank": 7
+        },
+        {
+          "params": {
+            "model__n_estimators": 60,
+            "model__max_depth": 8
+          },
+          "mean_cv_roc_auc": 0.7735292403505397,
+          "rank": 4
+        },
+        {
+          "params": {
+            "model__n_estimators": 100,
+            "model__max_depth": 3
+          },
+          "mean_cv_roc_auc": 0.7775737435372548,
+          "rank": 1
+        }
+      ]
     },
     "optuna_tpe": {
       "score": 0.7735486581906548,
       "params": {
         "trees": 44,
         "depth": 5
+      },
+      "history": [
+        {
+          "trial": 0,
+          "value": 0.7680075829439881,
+          "params": {
+            "trees": 27,
+            "depth": 6
+          }
+        },
+        {
+          "trial": 1,
+          "value": 0.768931118549837,
+          "params": {
+            "trees": 43,
+            "depth": 7
+          }
+        },
+        {
+          "trial": 2,
+          "value": 0.7733932282010209,
+          "params": {
+            "trees": 74,
+            "depth": 5
+          }
+        },
+        {
+          "trial": 3,
+          "value": 0.770645519180143,
+          "params": {
+            "trees": 42,
+            "depth": 4
+          }
+        },
+        {
+          "trial": 4,
+          "value": 0.7700079185588846,
+          "params": {
+            "trees": 34,
+            "depth": 3
+          }
+        },
+        {
+          "trial": 5,
+          "value": 0.7735486581906548,
+          "params": {
+            "trees": 44,
+            "depth": 5
+          }
+        },
+        {
+          "trial": 6,
+          "value": 0.75908880439267,
+          "params": {
+            "trees": 27,
+            "depth": 8
+          }
+        },
+        {
+          "trial": 7,
+          "value": 0.7701216321009635,
+          "params": {
+            "trees": 70,
+            "depth": 3
+          }
+        }
+      ]
+    },
+    "leaderboard": [
+      {
+        "search": "grid",
+        "score": 0.7776458224614576
+      },
+      {
+        "search": "random",
+        "score": 0.7775737435372548
+      },
+      {
+        "search": "optuna_tpe",
+        "score": 0.7735486581906548
       }
+    ],
+    "leakage_control": "all imputation/scaling lives inside each cross-validation Pipeline"
+  },
+  "_run": {
+    "lab": "unsupervised",
+    "profile": "portfolio",
+    "seed": 20260820,
+    "dataset_version": "portfolio-20260820-v2",
+    "config_path": null,
+    "elapsed_seconds": 13.568261874999735,
+    "resident_memory_mb": 1052.28125,
+    "environment": {
+      "python": "3.12.13",
+      "platform": "macOS-26.5.2-arm64-arm-64bit",
+      "processor": "arm"
     }
   }
 }

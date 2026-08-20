@@ -1,0 +1,5 @@
+task: [churn_classification, annual_spend_regression]
+models: [knn, linear, logistic, lasso, ridge, svc, svr, decision_tree, random_forest, extra_trees, xgboost, catboost, mlp]
+selection_metric: roc_auc
+calibration_bins: 10
+seed: 20260820

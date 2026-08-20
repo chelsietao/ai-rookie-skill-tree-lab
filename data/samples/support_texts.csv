@@ -1,0 +1,21 @@
+text_id,text,sentiment,intent
+txt_000000,easy checkout; question about delivery; order 0,1,delivery
+txt_000001,helpful service; question about refund; order 1,1,refund
+txt_000002,refund needed; question about product; order 2,0,product
+txt_000003,late delivery; question about account; order 3,0,account
+txt_000004,great quality; question about delivery; order 4,1,delivery
+txt_000005,fast delivery; question about refund; order 5,1,refund
+txt_000006,damaged product; question about product; order 6,0,product
+txt_000007,damaged product; question about account; order 7,0,account
+txt_000008,poor support; question about delivery; order 8,0,delivery
+txt_000009,great quality; question about refund; order 9,1,refund
+txt_000010,helpful service; question about product; order 10,1,product
+txt_000011,refund needed; question about account; order 11,0,account
+txt_000012,fast delivery; question about delivery; order 12,1,delivery
+txt_000013,damaged product; question about refund; order 13,0,refund
+txt_000014,easy checkout; question about product; order 14,1,product
+txt_000015,great quality; question about account; order 15,1,account
+txt_000016,late delivery; question about delivery; order 16,0,delivery
+txt_000017,great quality; question about refund; order 17,1,refund
+txt_000018,easy checkout; question about product; order 18,1,product
+txt_000019,easy checkout; question about account; order 19,1,account

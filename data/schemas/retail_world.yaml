@@ -1,0 +1,44 @@
+version: 2
+fictional: true
+tables:
+  customers:
+    primary_key: customer_id
+    columns:
+      customer_id: string
+      age: integer
+      tenure_days: integer
+      region: category
+      channel: category
+      income: float_nullable
+      visits_30d: integer
+      support_tickets: integer
+      loyalty_score: float_nullable_0_1
+      churned: binary_target
+      annual_spend: float_target
+  transactions:
+    primary_key: transaction_id
+    foreign_keys: {customer_id: customers.customer_id}
+    columns:
+      transaction_id: string
+      customer_id: string
+      product_id: string
+      day: integer_0_364
+      category: category
+      amount: positive_float
+      is_anomaly: binary_target
+  product_views:
+    primary_key: view_id
+    foreign_keys: {customer_id: customers.customer_id}
+    columns:
+      view_id: string
+      customer_id: string
+      product_id: string
+      day: integer_0_364
+      dwell_seconds: positive_float
+      page_depth: integer
+      converted: binary_target
+modalities:
+  sequences: {shape: "[N, 12, 3]", target: next_period_activity}
+  product_images: {shape: "[N, 3, 32, 32]", target: shape_class}
+  support_texts: {targets: [sentiment, intent]}
+  graph_edges: {type: customer_product_bipartite}

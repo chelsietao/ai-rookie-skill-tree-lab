@@ -20,12 +20,18 @@ the committed results come from the portfolio profile.
 - The autoencoder detects injected amount anomalies with ROC-AUC 0.9578.
 - Vision and text classification reach perfect scores because labels are deliberately simple. They
   verify implementation and training, not external generalization.
-- Tiny GPT learns the synthetic support grammar to perplexity 2.7445.
-- The GCN node task learns churn structure (ROC-AUC 0.7339); link prediction remains modest at
-  0.5612, showing that the random product features and weak preference structure limit the task.
+- Tiny GPT learns the synthetic support grammar to perplexity 2.7528.
+- The detector reaches mean IoU 0.8248 and mAP@.50:.95 0.7988 under a deliberately simplified
+  one-object protocol; this is not COCO-scale detection evidence.
+- The GCN node task reaches ROC-AUC 0.7001 but loses to logistic regression plus degree at 0.8004.
+  GCN link prediction reaches 0.5553 and loses to degree popularity at 0.5913. These retained negative
+  results indicate that the current node features, graph generator, and transductive objective do not
+  justify claiming graph-model superiority.
 
 ## Reproducibility
 
 The generator, split seeds, profiles, source code, metrics, tests, and environment constraints are
-versioned. Generated records and model binaries are excluded because they can be reconstructed.
-
+versioned. Generated records and model binaries are excluded because they can be reconstructed. The
+portfolio v2 manifest covers 20k customers, 100k transactions, 50k views, 10k sequences, 5k texts,
+5k images, and 148,923 graph edges. Thirty automated tests, notebook-source checks, Ruff, a live
+MySQL CI service, and an optional scheduled full-lab workflow guard the evidence.

@@ -2,7 +2,8 @@ image: python:3.12-slim
 
 test:
   script:
-    - python -m pip install -e '.[dev]'
-    - python -m ruff check src scripts tests
+    - python -m pip install -e '.[full,dev]'
+    - python -m ruff check src scripts tests notebooks
+    - python scripts/build_learning_notebooks.py --check notebooks
+    - python scripts/build_system_notebooks.py --check notebooks
     - python -m pytest
-

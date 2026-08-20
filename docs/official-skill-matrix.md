@@ -4,119 +4,119 @@ Source snapshot: SinoPac Turing Plan skill tree, inspected 2026-08-20.
 Ranks 1 and 2 are the 114 active nodes in the official AI rookie template.
 Every row points to executable evidence; hierarchy and duplicate-case nodes are retained.
 
-| Official path | Rank | Evidence | Status |
-|---|---:|---|---|
-| `/AI` | 1 | `README.md; reports/research-report.md` | Implemented |
-| `/AI/model structure` | 1 | `README.md; reports/research-report.md` | Implemented |
-| `/AI/model structure/CNN` | 2 | `src/rookie_lab/vision/` | Implemented |
-| `/AI/model structure/CNN/EfficientNet` | 1 | `src/rookie_lab/vision/` | Implemented |
-| `/AI/model structure/CNN/MobileNet` | 1 | `src/rookie_lab/vision/` | Implemented |
-| `/AI/model structure/CNN/ResNet` | 1 | `src/rookie_lab/vision/` | Implemented |
-| `/AI/model structure/CNN/VGG` | 1 | `src/rookie_lab/vision/` | Implemented |
-| `/AI/model structure/CNN/object detection` | 1 | `src/rookie_lab/vision/` | Implemented |
-| `/AI/model structure/GNN` | 1 | `src/rookie_lab/graph/` | Implemented |
-| `/AI/model structure/KNN` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/model structure/MLP` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/model structure/autoencoder` | 1 | `src/rookie_lab/deep/` | Implemented |
-| `/AI/model structure/linear model` | 1 | `README.md; reports/research-report.md` | Implemented |
-| `/AI/model structure/linear model/lasso` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/model structure/linear model/linear regression` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/model structure/linear model/logistic regression` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/model structure/linear model/ridge` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/model structure/RNN` | 1 | `src/rookie_lab/deep/` | Implemented |
-| `/AI/model structure/RNN/GRU` | 2 | `src/rookie_lab/deep/` | Implemented |
-| `/AI/model structure/RNN/LSTM` | 2 | `src/rookie_lab/deep/` | Implemented |
-| `/AI/model structure/SVM` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/model structure/SVM/SVC` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/model structure/SVM/SVR` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/model structure/tree-based` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/model structure/tree-based/CatBoost` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/model structure/tree-based/decision tree` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/model structure/tree-based/Extra-Trees` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/model structure/tree-based/random forests` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/model structure/tree-based/XGBoost` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/model structure/transformer` | 1 | `src/rookie_lab/nlp/` | Implemented |
-| `/AI/model structure/transformer/BERT` | 1 | `src/rookie_lab/nlp/` | Implemented |
-| `/AI/model structure/transformer/GPT` | 1 | `src/rookie_lab/nlp/` | Implemented |
-| `/AI/model structure/transformer/ViT` | 1 | `src/rookie_lab/vision/models.py` | Implemented |
-| `/AI/application` | 1 | `README.md; reports/research-report.md` | Implemented |
-| `/AI/application/computer vision` | 1 | `README.md; reports/research-report.md` | Implemented |
-| `/AI/application/NLP` | 1 | `src/rookie_lab/nlp/` | Implemented |
-| `/AI/learning strategy` | 1 | `README.md; reports/research-report.md` | Implemented |
-| `/AI/learning strategy/unsupervised learning` | 1 | `src/rookie_lab/unsupervised/` | Implemented |
-| `/AI/learning strategy/unsupervised learning/clustering` | 2 | `src/rookie_lab/unsupervised/` | Implemented |
-| `/AI/learning strategy/unsupervised learning/dimension reduction` | 2 | `src/rookie_lab/unsupervised/` | Implemented |
-| `/AI/learning strategy/pre-training` | 2 | `src/rookie_lab/nlp/` | Implemented |
-| `/AI/learning strategy/supervised learning` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/learning strategy/ensemble learning` | 1 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/training trick` | 1 | `README.md; reports/research-report.md` | Implemented |
-| `/AI/training trick/data preprocess` | 2 | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | Implemented |
-| `/AI/training trick/data preprocess/data augmentation` | 1 | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | Implemented |
-| `/AI/training trick/data preprocess/missing value imputation` | 2 | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | Implemented |
-| `/AI/training trick/parameter tuning` | 1 | `src/rookie_lab/unsupervised/` | Implemented |
-| `/AI/training trick/pooling` | 2 | `src/rookie_lab/vision/experiment.py` | Implemented |
-| `/AI/training trick/initialization` | 1 | `src/rookie_lab/deep/` | Implemented |
-| `/AI/training trick/activation` | 2 | `src/rookie_lab/deep/` | Implemented |
-| `/AI/training trick/attention` | 2 | `src/rookie_lab/deep/` | Implemented |
-| `/AI/training trick/learning rate scheduling` | 2 | `src/rookie_lab/deep/` | Implemented |
-| `/AI/training trick/normalization layer` | 2 | `src/rookie_lab/deep/` | Implemented |
-| `/AI/training trick/validation` | 2 | `README.md; reports/research-report.md` | Implemented |
-| `/AI/training trick/validation/early stopping` | 2 | `src/rookie_lab/deep/` | Implemented |
-| `/AI/training trick/validation/cross-validation` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/automl` | 1 | `src/rookie_lab/unsupervised/` | Implemented |
-| `/AI/editor` | 1 | `src/rookie_lab/software/; docs/tooling.md` | Implemented |
-| `/AI/editor/colab` | 2 | `src/rookie_lab/software/; docs/tooling.md` | Implemented |
-| `/AI/editor/jupyter notebook` | 2 | `src/rookie_lab/software/; docs/tooling.md` | Implemented |
-| `/AI/framework` | 1 | `README.md; reports/research-report.md` | Implemented |
-| `/AI/framework/Keras` | 2 | `src/rookie_lab/deep/` | Implemented |
-| `/AI/framework/PyTorch` | 2 | `src/rookie_lab/deep/` | Implemented |
-| `/AI/framework/scikit-learn` | 2 | `README.md; reports/research-report.md` | Implemented |
-| `/AI/framework/TensorFlow` | 2 | `src/rookie_lab/deep/` | Implemented |
-| `/AI/tracking` | 1 | `src/rookie_lab/tracking/` | Implemented |
-| `/AI/tracking/TensorBoard` | 1 | `src/rookie_lab/tracking/` | Implemented |
-| `/AI/model structure/CNN/SqueezeNet` | 1 | `src/rookie_lab/vision/` | Implemented |
-| `/AI/model structure/knn` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/model structure/mlp` | 2 | `src/rookie_lab/classical/` | Implemented |
-| `/AI/training trick/data preprocess/normalization` | 2 | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | Implemented |
-| `/AI/training trick/data preprocess/numpy` | 2 | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | Implemented |
-| `/AI/training trick/data preprocess/pandas` | 2 | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | Implemented |
-| `/AI/training trick/data preprocess/imbalanced-learn` | 1 | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | Implemented |
-| `/AI/training trick/data preprocess/sklearn.preprocessing` | 2 | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | Implemented |
-| `/AI/training trick/early stopping` | 2 | `src/rookie_lab/deep/` | Implemented |
-| `/AI/framework/pytorch` | 2 | `src/rookie_lab/deep/` | Implemented |
-| `/AI/framework/sklearn` | 2 | `README.md; reports/research-report.md` | Implemented |
-| `/AI/framework/tensorflow` | 2 | `src/rookie_lab/deep/` | Implemented |
-| `/AI/visualization` | 1 | `src/rookie_lab/unsupervised/experiment.py` | Implemented |
-| `/AI/visualization/matplotlib` | 2 | `src/rookie_lab/unsupervised/experiment.py` | Implemented |
-| `/AI/visualization/seaborn` | 2 | `src/rookie_lab/unsupervised/experiment.py` | Implemented |
-| `/AI/model structure/CNN/convolution` | 2 | `src/rookie_lab/vision/` | Implemented |
-| `/software engineering` | 1 | `README.md; reports/research-report.md` | Implemented |
-| `/software engineering/backend` | 1 | `README.md; reports/research-report.md` | Implemented |
-| `/software engineering/backend/logging` | 1 | `src/rookie_lab/software/; docs/tooling.md` | Implemented |
-| `/software engineering/database` | 1 | `src/rookie_lab/database/; sql/` | Implemented |
-| `/software engineering/database/RDBMS` | 1 | `src/rookie_lab/database/; sql/` | Implemented |
-| `/software engineering/database/RDBMS/MSSQL` | 1 | `src/rookie_lab/database/; sql/` | Implemented |
-| `/software engineering/database/RDBMS/MySQL` | 1 | `src/rookie_lab/database/; sql/` | Implemented |
-| `/software engineering/VCS` | 1 | `README.md; reports/research-report.md` | Implemented |
-| `/software engineering/VCS/git` | 2 | `src/rookie_lab/software/; docs/tooling.md` | Implemented |
-| `/software engineering/VCS/registry` | 2 | `README.md; reports/research-report.md` | Implemented |
-| `/software engineering/VCS/registry/GitHub` | 2 | `src/rookie_lab/software/; docs/tooling.md` | Implemented |
-| `/software engineering/VCS/registry/GitLab` | 2 | `src/rookie_lab/software/; docs/tooling.md` | Implemented |
-| `/software engineering/visualization` | 1 | `src/rookie_lab/unsupervised/experiment.py` | Implemented |
-| `/software engineering/visualization/matplotlib` | 2 | `src/rookie_lab/unsupervised/experiment.py` | Implemented |
-| `/software engineering/visualization/seaborn` | 2 | `src/rookie_lab/unsupervised/experiment.py` | Implemented |
-| `/software engineering/data analysis` | 2 | `README.md; reports/research-report.md` | Implemented |
-| `/software engineering/data analysis/numpy` | 2 | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | Implemented |
-| `/software engineering/data analysis/pandas` | 2 | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | Implemented |
-| `/software engineering/editor` | 1 | `src/rookie_lab/software/; docs/tooling.md` | Implemented |
-| `/software engineering/editor/vi` | 2 | `docs/tooling.md` | Implemented |
-| `/software engineering/editor/VS Code` | 2 | `src/rookie_lab/software/; docs/tooling.md` | Implemented |
-| `/software engineering/language` | 1 | `README.md; reports/research-report.md` | Implemented |
-| `/software engineering/language/Python` | 2 | `src/rookie_lab/software/; docs/tooling.md` | Implemented |
-| `/software engineering/file format` | 1 | `README.md; reports/research-report.md` | Implemented |
-| `/software engineering/file format/JSON` | 2 | `src/rookie_lab/software/; docs/tooling.md` | Implemented |
-| `/software engineering/file format/YAML` | 2 | `src/rookie_lab/software/; docs/tooling.md` | Implemented |
-| `/software engineering/backend/logging/standard output` | 2 | `src/rookie_lab/software/; docs/tooling.md` | Implemented |
-| `/software engineering/serialization` | 1 | `src/rookie_lab/software/; docs/tooling.md` | Implemented |
-| `/software engineering/serialization/JSON` | 2 | `src/rookie_lab/software/; docs/tooling.md` | Implemented |
-| `/software engineering/serialization/YAML` | 2 | `src/rookie_lab/software/; docs/tooling.md` | Implemented |
+| Official skill | Normalized skill | Rank | Prior GitHub evidence | New executable evidence | Result/test artifact | Status |
+|---|---|---:|---|---|---|---|
+| `/AI` | AI | 1 | Gap before this repository | `README.md; reports/research-report.md` | `reports/research-report.md` | Verified |
+| `/AI/model structure` | model structure | 1 | Gap before this repository | `README.md; reports/research-report.md` | `reports/research-report.md` | Verified |
+| `/AI/model structure/CNN` | CNN | 2 | multimodal-finance-agent-research | `src/rookie_lab/vision/` | `artifacts/metrics/vision.json` | Verified |
+| `/AI/model structure/CNN/EfficientNet` | EfficientNet | 1 | multimodal-finance-agent-research | `src/rookie_lab/vision/` | `artifacts/metrics/vision.json` | Verified |
+| `/AI/model structure/CNN/MobileNet` | MobileNet | 1 | multimodal-finance-agent-research | `src/rookie_lab/vision/` | `artifacts/metrics/vision.json` | Verified |
+| `/AI/model structure/CNN/ResNet` | ResNet | 1 | multimodal-finance-agent-research | `src/rookie_lab/vision/` | `artifacts/metrics/vision.json` | Verified |
+| `/AI/model structure/CNN/VGG` | VGG | 1 | multimodal-finance-agent-research | `src/rookie_lab/vision/` | `artifacts/metrics/vision.json` | Verified |
+| `/AI/model structure/CNN/object detection` | object detection | 1 | multimodal-finance-agent-research | `src/rookie_lab/vision/` | `artifacts/metrics/vision.json` | Verified |
+| `/AI/model structure/GNN` | GNN | 1 | Gap before this repository | `src/rookie_lab/graph/` | `artifacts/metrics/graph.json` | Verified |
+| `/AI/model structure/KNN` | K-nearest neighbors | 2 | Gap before this repository | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/model structure/MLP` | multilayer perceptron | 2 | pinn-laplace-complex-analysis | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/model structure/autoencoder` | autoencoder | 1 | Gap before this repository | `src/rookie_lab/deep/` | `artifacts/metrics/deep.json` | Verified |
+| `/AI/model structure/linear model` | linear model | 1 | Gap before this repository | `README.md; reports/research-report.md` | `reports/research-report.md` | Verified |
+| `/AI/model structure/linear model/lasso` | lasso | 2 | Gap before this repository | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/model structure/linear model/linear regression` | linear regression | 2 | Gap before this repository | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/model structure/linear model/logistic regression` | logistic regression | 2 | multimodal-finance-agent-research | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/model structure/linear model/ridge` | ridge | 2 | multimodal-finance-agent-research | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/model structure/RNN` | RNN | 1 | Gap before this repository | `src/rookie_lab/deep/` | `artifacts/metrics/deep.json` | Verified |
+| `/AI/model structure/RNN/GRU` | GRU | 2 | Gap before this repository | `src/rookie_lab/deep/` | `artifacts/metrics/deep.json` | Verified |
+| `/AI/model structure/RNN/LSTM` | LSTM | 2 | Gap before this repository | `src/rookie_lab/deep/` | `artifacts/metrics/deep.json` | Verified |
+| `/AI/model structure/SVM` | SVM | 2 | Gap before this repository | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/model structure/SVM/SVC` | support-vector classification | 2 | Gap before this repository | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/model structure/SVM/SVR` | support-vector regression | 2 | Gap before this repository | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/model structure/tree-based` | tree-based | 2 | Gap before this repository | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/model structure/tree-based/CatBoost` | CatBoost | 2 | Gap before this repository | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/model structure/tree-based/decision tree` | decision tree | 2 | Gap before this repository | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/model structure/tree-based/Extra-Trees` | Extra-Trees | 2 | Gap before this repository | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/model structure/tree-based/random forests` | random forests | 2 | vocal-age-analyzer | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/model structure/tree-based/XGBoost` | XGBoost | 2 | vocal-age-analyzer | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/model structure/transformer` | transformer | 1 | LLM-Refusal-Mechanism-Exploration | `src/rookie_lab/nlp/` | `artifacts/metrics/nlp.json` | Verified |
+| `/AI/model structure/transformer/BERT` | BERT | 1 | LLM-Refusal-Mechanism-Exploration | `src/rookie_lab/nlp/` | `artifacts/metrics/nlp.json` | Verified |
+| `/AI/model structure/transformer/GPT` | GPT | 1 | LLM-Refusal-Mechanism-Exploration | `src/rookie_lab/nlp/` | `artifacts/metrics/nlp.json` | Verified |
+| `/AI/model structure/transformer/ViT` | ViT | 1 | LLM-Refusal-Mechanism-Exploration | `src/rookie_lab/vision/models.py` | `artifacts/metrics/vision.json` | Verified |
+| `/AI/application` | application | 1 | Gap before this repository | `README.md; reports/research-report.md` | `reports/research-report.md` | Verified |
+| `/AI/application/computer vision` | computer vision | 1 | Gap before this repository | `README.md; reports/research-report.md` | `reports/research-report.md` | Verified |
+| `/AI/application/NLP` | NLP | 1 | Gap before this repository | `src/rookie_lab/nlp/` | `artifacts/metrics/nlp.json` | Verified |
+| `/AI/learning strategy` | learning strategy | 1 | Gap before this repository | `README.md; reports/research-report.md` | `reports/research-report.md` | Verified |
+| `/AI/learning strategy/unsupervised learning` | unsupervised learning | 1 | Gap before this repository | `src/rookie_lab/unsupervised/` | `artifacts/metrics/unsupervised.json` | Verified |
+| `/AI/learning strategy/unsupervised learning/clustering` | clustering | 2 | Gap before this repository | `src/rookie_lab/unsupervised/` | `artifacts/metrics/unsupervised.json` | Verified |
+| `/AI/learning strategy/unsupervised learning/dimension reduction` | dimension reduction | 2 | Gap before this repository | `src/rookie_lab/unsupervised/` | `artifacts/metrics/unsupervised.json` | Verified |
+| `/AI/learning strategy/pre-training` | pre-training | 2 | Gap before this repository | `src/rookie_lab/nlp/` | `artifacts/metrics/nlp.json` | Verified |
+| `/AI/learning strategy/supervised learning` | supervised learning | 2 | Gap before this repository | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/learning strategy/ensemble learning` | ensemble learning | 1 | Gap before this repository | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/training trick` | training trick | 1 | Gap before this repository | `README.md; reports/research-report.md` | `reports/research-report.md` | Verified |
+| `/AI/training trick/data preprocess` | data preprocess | 2 | Gap before this repository | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/training trick/data preprocess/data augmentation` | data augmentation | 1 | Gap before this repository | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/training trick/data preprocess/missing value imputation` | missing value imputation | 2 | Gap before this repository | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/training trick/parameter tuning` | parameter tuning | 1 | Gap before this repository | `src/rookie_lab/unsupervised/` | `artifacts/metrics/unsupervised.json` | Verified |
+| `/AI/training trick/pooling` | pooling | 2 | Gap before this repository | `src/rookie_lab/vision/experiment.py` | `artifacts/metrics/vision.json` | Verified |
+| `/AI/training trick/initialization` | initialization | 1 | Gap before this repository | `src/rookie_lab/deep/` | `artifacts/metrics/deep.json` | Verified |
+| `/AI/training trick/activation` | activation | 2 | Gap before this repository | `src/rookie_lab/deep/` | `artifacts/metrics/deep.json` | Verified |
+| `/AI/training trick/attention` | attention | 2 | Gap before this repository | `src/rookie_lab/deep/` | `artifacts/metrics/deep.json` | Verified |
+| `/AI/training trick/learning rate scheduling` | learning rate scheduling | 2 | Gap before this repository | `src/rookie_lab/deep/` | `artifacts/metrics/deep.json` | Verified |
+| `/AI/training trick/normalization layer` | normalization layer | 2 | Gap before this repository | `src/rookie_lab/deep/` | `artifacts/metrics/deep.json` | Verified |
+| `/AI/training trick/validation` | validation | 2 | Gap before this repository | `README.md; reports/research-report.md` | `reports/research-report.md` | Verified |
+| `/AI/training trick/validation/early stopping` | early stopping | 2 | Gap before this repository | `src/rookie_lab/deep/` | `artifacts/metrics/deep.json` | Verified |
+| `/AI/training trick/validation/cross-validation` | cross-validation | 2 | Gap before this repository | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/automl` | automl | 1 | Gap before this repository | `src/rookie_lab/unsupervised/` | `artifacts/metrics/unsupervised.json` | Verified |
+| `/AI/editor` | editor | 1 | Gap before this repository | `src/rookie_lab/software/; docs/tooling.md` | `tests/unit/test_software.py` | Verified |
+| `/AI/editor/colab` | colab | 2 | multiple existing repositories | `src/rookie_lab/software/; docs/tooling.md` | `tests/unit/test_software.py` | Verified |
+| `/AI/editor/jupyter notebook` | jupyter notebook | 2 | multiple existing repositories | `src/rookie_lab/software/; docs/tooling.md` | `tests/unit/test_software.py` | Verified |
+| `/AI/framework` | framework | 1 | Gap before this repository | `README.md; reports/research-report.md` | `reports/research-report.md` | Verified |
+| `/AI/framework/Keras` | Keras | 2 | Gap before this repository | `src/rookie_lab/deep/` | `artifacts/metrics/deep.json` | Verified |
+| `/AI/framework/PyTorch` | PyTorch | 2 | pinn-laplace-complex-analysis | `src/rookie_lab/deep/` | `artifacts/metrics/deep.json` | Verified |
+| `/AI/framework/scikit-learn` | scikit-learn | 2 | vocal-age-analyzer | `README.md; reports/research-report.md` | `reports/research-report.md` | Verified |
+| `/AI/framework/TensorFlow` | TensorFlow | 2 | Gap before this repository | `src/rookie_lab/deep/` | `artifacts/metrics/deep.json` | Verified |
+| `/AI/tracking` | tracking | 1 | Gap before this repository | `src/rookie_lab/tracking/` | `artifacts/metrics/tracking.json` | Verified |
+| `/AI/tracking/TensorBoard` | TensorBoard | 1 | Gap before this repository | `src/rookie_lab/tracking/` | `artifacts/metrics/tracking.json` | Verified |
+| `/AI/model structure/CNN/SqueezeNet` | SqueezeNet | 1 | multimodal-finance-agent-research | `src/rookie_lab/vision/` | `artifacts/metrics/vision.json` | Verified |
+| `/AI/model structure/knn` | K-nearest neighbors | 2 | Gap before this repository | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/model structure/mlp` | multilayer perceptron | 2 | pinn-laplace-complex-analysis | `src/rookie_lab/classical/` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/training trick/data preprocess/normalization` | normalization | 2 | Gap before this repository | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/training trick/data preprocess/numpy` | NumPy | 2 | Penguin_classifier | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/training trick/data preprocess/pandas` | Pandas | 2 | Penguin_classifier | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/training trick/data preprocess/imbalanced-learn` | imbalanced-learn | 1 | Gap before this repository | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/training trick/data preprocess/sklearn.preprocessing` | sklearn.preprocessing | 2 | Gap before this repository | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | `artifacts/metrics/classical.json` | Verified |
+| `/AI/training trick/early stopping` | early stopping | 2 | Gap before this repository | `src/rookie_lab/deep/` | `artifacts/metrics/deep.json` | Verified |
+| `/AI/framework/pytorch` | PyTorch | 2 | pinn-laplace-complex-analysis | `src/rookie_lab/deep/` | `artifacts/metrics/deep.json` | Verified |
+| `/AI/framework/sklearn` | scikit-learn | 2 | Gap before this repository | `README.md; reports/research-report.md` | `reports/research-report.md` | Verified |
+| `/AI/framework/tensorflow` | TensorFlow | 2 | Gap before this repository | `src/rookie_lab/deep/` | `artifacts/metrics/deep.json` | Verified |
+| `/AI/visualization` | visualization | 1 | Gap before this repository | `src/rookie_lab/unsupervised/experiment.py` | `artifacts/metrics/unsupervised.json` | Verified |
+| `/AI/visualization/matplotlib` | matplotlib | 2 | Penguin_classifier | `src/rookie_lab/unsupervised/experiment.py` | `artifacts/metrics/unsupervised.json` | Verified |
+| `/AI/visualization/seaborn` | seaborn | 2 | vocal-age-analyzer | `src/rookie_lab/unsupervised/experiment.py` | `artifacts/metrics/unsupervised.json` | Verified |
+| `/AI/model structure/CNN/convolution` | convolution | 2 | multimodal-finance-agent-research | `src/rookie_lab/vision/` | `artifacts/metrics/vision.json` | Verified |
+| `/software engineering` | software engineering | 1 | Gap before this repository | `README.md; reports/research-report.md` | `reports/research-report.md` | Verified |
+| `/software engineering/backend` | backend | 1 | Gap before this repository | `README.md; reports/research-report.md` | `reports/research-report.md` | Verified |
+| `/software engineering/backend/logging` | logging | 1 | Gap before this repository | `src/rookie_lab/software/; docs/tooling.md` | `tests/unit/test_software.py` | Verified |
+| `/software engineering/database` | database | 1 | Gap before this repository | `src/rookie_lab/database/; sql/` | `tests/unit/test_tracking_database.py` | Verified |
+| `/software engineering/database/RDBMS` | RDBMS | 1 | Gap before this repository | `src/rookie_lab/database/; sql/` | `tests/unit/test_tracking_database.py` | Verified |
+| `/software engineering/database/RDBMS/MSSQL` | MSSQL | 1 | Gap before this repository | `src/rookie_lab/database/; sql/` | `tests/unit/test_tracking_database.py` | Verified |
+| `/software engineering/database/RDBMS/MySQL` | MySQL | 1 | Gap before this repository | `src/rookie_lab/database/; sql/` | `tests/unit/test_tracking_database.py` | Verified |
+| `/software engineering/VCS` | VCS | 1 | Gap before this repository | `README.md; reports/research-report.md` | `reports/research-report.md` | Verified |
+| `/software engineering/VCS/git` | git | 2 | multiple existing repositories | `src/rookie_lab/software/; docs/tooling.md` | `tests/unit/test_software.py` | Verified |
+| `/software engineering/VCS/registry` | registry | 2 | Gap before this repository | `README.md; reports/research-report.md` | `reports/research-report.md` | Verified |
+| `/software engineering/VCS/registry/GitHub` | GitHub | 2 | multiple existing repositories | `src/rookie_lab/software/; docs/tooling.md` | `tests/unit/test_software.py` | Verified |
+| `/software engineering/VCS/registry/GitLab` | GitLab | 2 | multiple existing repositories | `src/rookie_lab/software/; docs/tooling.md` | `tests/unit/test_software.py` | Verified |
+| `/software engineering/visualization` | visualization | 1 | Gap before this repository | `src/rookie_lab/unsupervised/experiment.py` | `artifacts/metrics/unsupervised.json` | Verified |
+| `/software engineering/visualization/matplotlib` | matplotlib | 2 | Penguin_classifier | `src/rookie_lab/unsupervised/experiment.py` | `artifacts/metrics/unsupervised.json` | Verified |
+| `/software engineering/visualization/seaborn` | seaborn | 2 | vocal-age-analyzer | `src/rookie_lab/unsupervised/experiment.py` | `artifacts/metrics/unsupervised.json` | Verified |
+| `/software engineering/data analysis` | data analysis | 2 | Gap before this repository | `README.md; reports/research-report.md` | `reports/research-report.md` | Verified |
+| `/software engineering/data analysis/numpy` | NumPy | 2 | Penguin_classifier | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | `artifacts/metrics/classical.json` | Verified |
+| `/software engineering/data analysis/pandas` | Pandas | 2 | Penguin_classifier | `src/rookie_lab/data/; src/rookie_lab/classical/preprocessing.py` | `artifacts/metrics/classical.json` | Verified |
+| `/software engineering/editor` | editor | 1 | Gap before this repository | `src/rookie_lab/software/; docs/tooling.md` | `tests/unit/test_software.py` | Verified |
+| `/software engineering/editor/vi` | vi | 2 | Gap before this repository | `docs/tooling.md` | `reports/research-report.md` | Verified |
+| `/software engineering/editor/VS Code` | VS Code | 2 | multiple existing repositories | `src/rookie_lab/software/; docs/tooling.md` | `tests/unit/test_software.py` | Verified |
+| `/software engineering/language` | language | 1 | Gap before this repository | `README.md; reports/research-report.md` | `reports/research-report.md` | Verified |
+| `/software engineering/language/Python` | Python | 2 | Penguin_classifier | `src/rookie_lab/software/; docs/tooling.md` | `tests/unit/test_software.py` | Verified |
+| `/software engineering/file format` | file format | 1 | Gap before this repository | `README.md; reports/research-report.md` | `reports/research-report.md` | Verified |
+| `/software engineering/file format/JSON` | JSON | 2 | multimodal-finance-agent-research | `src/rookie_lab/software/; docs/tooling.md` | `tests/unit/test_software.py` | Verified |
+| `/software engineering/file format/YAML` | YAML | 2 | multimodal-finance-agent-research | `src/rookie_lab/software/; docs/tooling.md` | `tests/unit/test_software.py` | Verified |
+| `/software engineering/backend/logging/standard output` | standard output | 2 | Gap before this repository | `src/rookie_lab/software/; docs/tooling.md` | `tests/unit/test_software.py` | Verified |
+| `/software engineering/serialization` | serialization | 1 | Gap before this repository | `src/rookie_lab/software/; docs/tooling.md` | `tests/unit/test_software.py` | Verified |
+| `/software engineering/serialization/JSON` | JSON | 2 | multimodal-finance-agent-research | `src/rookie_lab/software/; docs/tooling.md` | `tests/unit/test_software.py` | Verified |
+| `/software engineering/serialization/YAML` | YAML | 2 | multimodal-finance-agent-research | `src/rookie_lab/software/; docs/tooling.md` | `tests/unit/test_software.py` | Verified |

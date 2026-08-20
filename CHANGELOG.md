@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.0 - Deep Evidence Edition
+
+- Expanded data, experiments, evaluation, tracking, tests, documentation, and all 13 notebooks.
+- Added honest classical threshold/calibration analysis and graph baseline failures.
+- Added a generated reproducibility report and official-skill evidence matrix with prior-gap context.
+
 ## v1.0.0
 
 - Added CLI, FastAPI, complete reproducibility pipeline, CI, reports, safety tests, and 114-node evidence matrix.
@@ -35,4 +41,3 @@
 ## v0.1.0
 
 - Added official skill snapshot, unified synthetic data, validation, serialization, logging, and SQL schemas.
-

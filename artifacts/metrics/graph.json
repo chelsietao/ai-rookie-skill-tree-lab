@@ -1,17 +1,84 @@
 {
   "node_classification": {
-    "accuracy": 0.6143333333333333,
-    "roc_auc": 0.73392090357605
+    "accuracy": 0.675,
+    "roc_auc": 0.7000661313310973
+  },
+  "traditional_baseline": {
+    "model": "class-weighted logistic regression on tabular features plus node degree",
+    "node_roc_auc": 0.80043421818032
   },
   "link_prediction": {
-    "roc_auc": 0.561159
+    "gcn_roc_auc": 0.555253,
+    "degree_popularity_baseline_roc_auc": 0.5912685
   },
   "training_loss": {
-    "first": 0.9376113414764404,
-    "last": 0.8604075312614441
+    "first": 0.9371117353439331,
+    "last": 0.8545569181442261,
+    "curve": [
+      0.9371117353439331,
+      0.9351551532745361,
+      0.93357253074646,
+      0.931902289390564,
+      0.9298015236854553,
+      0.9269978404045105,
+      0.9233487844467163,
+      0.9188211560249329,
+      0.913465678691864,
+      0.9073909521102905,
+      0.9008463025093079,
+      0.8941919803619385,
+      0.88790363073349,
+      0.882323682308197,
+      0.8774123787879944,
+      0.8732775449752808,
+      0.8700340390205383,
+      0.8674489259719849,
+      0.8652456402778625,
+      0.8636165261268616,
+      0.8626906275749207,
+      0.8620460033416748,
+      0.8616940975189209,
+      0.8616339564323425,
+      0.8615689277648926,
+      0.8613482713699341,
+      0.8610534071922302,
+      0.8606306910514832,
+      0.8599942922592163,
+      0.8592573404312134,
+      0.8585272431373596,
+      0.8577470779418945,
+      0.8570109605789185,
+      0.8564125299453735,
+      0.8559050559997559,
+      0.855488657951355,
+      0.8551816940307617,
+      0.8549297451972961,
+      0.8547157049179077,
+      0.8545569181442261
+    ]
+  },
+  "graph_statistics": {
+    "customer_nodes": 20000,
+    "product_nodes": 500,
+    "mean_customer_degree": 7.44615,
+    "density": 0.0148923
   },
   "nodes": 20500,
-  "edges": 99534,
+  "edges": 148923,
   "implementation": "manual PyTorch sparse GCN; no PyG or DGL",
-  "scope": "transductive graph with joint node and link-reconstruction losses"
+  "scope": "transductive graph with joint node and link-reconstruction losses",
+  "_run": {
+    "lab": "graph",
+    "profile": "portfolio",
+    "seed": 20260820,
+    "dataset_version": "portfolio-20260820-v2",
+    "config_path": null,
+    "elapsed_seconds": 0.9785958749998827,
+    "resident_memory_mb": 447.125,
+    "environment": {
+      "python": "3.12.13",
+      "platform": "macOS-26.5.2-arm64-arm-64bit",
+      "processor": "arm"
+    }
+  }
 }

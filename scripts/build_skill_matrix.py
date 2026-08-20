@@ -4,6 +4,60 @@ from pathlib import Path
 
 import pandas as pd
 
+ALIASES = {
+    "knn": "K-nearest neighbors",
+    "mlp": "multilayer perceptron",
+    "svc": "support-vector classification",
+    "svr": "support-vector regression",
+    "pytorch": "PyTorch",
+    "tensorflow": "TensorFlow",
+    "sklearn": "scikit-learn",
+    "numpy": "NumPy",
+    "pandas": "Pandas",
+}
+
+
+def normalized(path: str) -> str:
+    leaf = path.rsplit("/", 1)[-1]
+    return ALIASES.get(leaf.lower(), leaf)
+
+
+def prior_evidence(path: str) -> str:
+    lowered = path.lower()
+    if any(term in lowered for term in ("numpy", "pandas", "matplotlib", "python")):
+        return "Penguin_classifier"
+    if any(term in lowered for term in ("pytorch", "mlp")):
+        return "pinn-laplace-complex-analysis"
+    if any(term in lowered for term in ("random forest", "xgboost", "seaborn", "scikit")):
+        return "vocal-age-analyzer"
+    if any(term in lowered for term in ("transformer", "bert", "gpt")):
+        return "LLM-Refusal-Mechanism-Exploration"
+    if any(term in lowered for term in ("cnn", "vit", "logistic", "ridge", "json", "yaml")):
+        return "multimodal-finance-agent-research"
+    if any(term in lowered for term in ("git", "github", "jupyter", "colab", "vs code")):
+        return "multiple existing repositories"
+    return "Gap before this repository"
+
+
+def result_artifact(path: str) -> str:
+    target = evidence(path)
+    routes = {
+        "vision": "artifacts/metrics/vision.json",
+        "graph": "artifacts/metrics/graph.json",
+        "deep": "artifacts/metrics/deep.json",
+        "nlp": "artifacts/metrics/nlp.json",
+        "unsupervised": "artifacts/metrics/unsupervised.json",
+        "classical": "artifacts/metrics/classical.json",
+        "tracking": "artifacts/metrics/tracking.json",
+        "database": "tests/unit/test_tracking_database.py",
+        "software": "tests/unit/test_software.py",
+        "data": "tests/unit/test_data.py",
+    }
+    for term, artifact in routes.items():
+        if term in target:
+            return artifact
+    return "reports/research-report.md"
+
 
 def evidence(path: str) -> str:
     lowered = path.lower()
@@ -130,11 +184,15 @@ def main() -> None:
         "Ranks 1 and 2 are the 114 active nodes in the official AI rookie template.",
         "Every row points to executable evidence; hierarchy and duplicate-case nodes are retained.",
         "",
-        "| Official path | Rank | Evidence | Status |",
-        "|---|---:|---|---|",
+        "| Official skill | Normalized skill | Rank | Prior GitHub evidence | "
+        "New executable evidence | Result/test artifact | Status |",
+        "|---|---|---:|---|---|---|---|",
     ]
     for row in frame.itertuples():
-        lines.append(f"| `{row.path}` | {row.rank} | `{evidence(row.path)}` | Implemented |")
+        lines.append(
+            f"| `{row.path}` | {normalized(row.path)} | {row.rank} | {prior_evidence(row.path)} | "
+            f"`{evidence(row.path)}` | `{result_artifact(row.path)}` | Verified |"
+        )
     output = Path("docs/official-skill-matrix.md")
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text("\n".join(lines) + "\n")

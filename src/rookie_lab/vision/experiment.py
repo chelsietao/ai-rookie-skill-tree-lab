@@ -6,9 +6,10 @@ import json
 import time
 from pathlib import Path
 
+import matplotlib.pyplot as plt
 import numpy as np
 import torch
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, average_precision_score
 from sklearn.model_selection import train_test_split
 from torch import nn
 from torch.utils.data import DataLoader, Dataset, TensorDataset
@@ -42,7 +43,7 @@ def _train_classifier(
     valid: TensorDataset,
     epochs: int,
     seed: int,
-) -> dict[str, float]:
+) -> dict[str, object]:
     torch.manual_seed(seed)
     loader = DataLoader(
         train, batch_size=64, shuffle=True, generator=torch.Generator().manual_seed(seed)
@@ -50,13 +51,17 @@ def _train_classifier(
     optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
     criterion = nn.CrossEntropyLoss()
     started = time.perf_counter()
+    losses: list[float] = []
     for _ in range(epochs):
         model.train()
+        epoch_losses: list[float] = []
         for images, labels in loader:
             optimizer.zero_grad()
             loss = criterion(model(images), labels)
             loss.backward()
             optimizer.step()
+            epoch_losses.append(float(loss.detach()))
+        losses.append(float(np.mean(epoch_losses)))
     model.eval()
     with torch.no_grad():
         logits = model(valid.tensors[0])
@@ -69,6 +74,7 @@ def _train_classifier(
         "parameters": float(sum(value.numel() for value in model.parameters())),
         "fit_seconds": time.perf_counter() - started,
         "batch32_inference_ms": inference_ms,
+        "training_loss": losses,
     }
 
 
@@ -92,7 +98,7 @@ def _iou(prediction: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
 
 def _train_detector(
     data_dir: Path, x: np.ndarray, y: np.ndarray, epochs: int, seed: int
-) -> dict[str, float]:
+) -> dict[str, object]:
     rows = json.loads((data_dir / "detection_labels.json").read_text())
     boxes = np.array([row["bbox_xyxy"] for row in rows], dtype="float32") / x.shape[-1]
     indices = np.arange(len(x))
@@ -118,10 +124,76 @@ def _train_detector(
     with torch.no_grad():
         logits, predicted = model(torch.from_numpy(x[valid_idx].astype("float32") / 255))
         iou = _iou(predicted, torch.from_numpy(boxes[valid_idx]))
+        probabilities = logits.softmax(1).numpy()
+    predicted_class = logits.argmax(1).numpy()
+    target_class = y[valid_idx]
+    correct_class = predicted_class == target_class
+    thresholds = np.arange(0.5, 1.0, 0.05)
+    ap_by_threshold: dict[str, float] = {}
+    for threshold in thresholds:
+        class_ap: list[float] = []
+        valid_iou = (iou.numpy() >= threshold).astype(float)
+        for class_index in range(probabilities.shape[1]):
+            target_binary = (target_class == class_index).astype(int)
+            matched_score = probabilities[:, class_index] * valid_iou
+            class_ap.append(float(average_precision_score(target_binary, matched_score)))
+        ap_by_threshold[f"{threshold:.2f}"] = float(np.mean(class_ap))
+    true_positive = int((correct_class & (iou.numpy() >= 0.5)).sum())
+    precision = true_positive / max(1, len(valid_idx))
+    recall = true_positive / max(1, len(valid_idx))
+
+    failures = np.flatnonzero(~correct_class | (iou.numpy() < 0.5))[:12]
+    figure_path = Path("artifacts/figures") / "detection-error-cases.png"
+    figure_path.parent.mkdir(parents=True, exist_ok=True)
+    fig, axes = plt.subplots(3, 4, figsize=(10, 7))
+    for axis in axes.flat:
+        axis.axis("off")
+    for axis, failure in zip(axes.flat, failures, strict=False):
+        image = x[valid_idx[failure]].transpose(1, 2, 0)
+        axis.imshow(image)
+        target_box = boxes[valid_idx[failure]] * x.shape[-1]
+        predicted_box = predicted[failure].numpy() * x.shape[-1]
+        for box, color in ((target_box, "lime"), (predicted_box, "red")):
+            x1, y1, x2, y2 = box
+            axis.add_patch(
+                plt.Rectangle((x1, y1), x2 - x1, y2 - y1, fill=False, color=color, linewidth=1.5)
+            )
+        axis.set_title(
+            f"IoU={iou[failure]:.2f} true={target_class[failure]} pred={predicted_class[failure]}"
+        )
+        axis.axis("off")
+    fig.suptitle("Detector errors: green target, red prediction")
+    fig.tight_layout()
+    fig.savefig(figure_path, dpi=150)
+    plt.close(fig)
     return {
-        "class_accuracy": float((logits.argmax(1).numpy() == y[valid_idx]).mean()),
+        "class_accuracy": float(correct_class.mean()),
         "mean_iou": float(iou.mean()),
-        "map_at_50_proxy": float((iou >= 0.5).float().mean()),
+        "precision_at_50": precision,
+        "recall_at_50": recall,
+        "map_at_50": ap_by_threshold["0.50"],
+        "map_50_95": float(np.mean(list(ap_by_threshold.values()))),
+        "ap_by_iou_threshold": ap_by_threshold,
+        "error_figure": str(figure_path),
+    }
+
+
+def _transfer_proxy(
+    train: Dataset[tuple[torch.Tensor, torch.Tensor]], valid: TensorDataset, seed: int
+) -> dict[str, object]:
+    """Compare one-epoch scratch training with a frozen reusable convolutional representation."""
+    pretrained = BasicCNN()
+    _train_classifier(pretrained, train, valid, epochs=2, seed=seed)
+    for parameter in pretrained.features.parameters():
+        parameter.requires_grad = False
+    pretrained.output.reset_parameters()
+    transfer = _train_classifier(pretrained, train, valid, epochs=1, seed=seed)
+    scratch = _train_classifier(BasicCNN(), train, valid, epochs=1, seed=seed)
+    return {
+        "protocol": "two-epoch source pretraining, frozen features, one-epoch head adaptation",
+        "frozen_feature_transfer": transfer,
+        "one_epoch_from_scratch": scratch,
+        "limitation": "same synthetic domain; demonstrates mechanics rather than external transfer",
     }
 
 
@@ -147,6 +219,7 @@ def run(data_dir: Path, profile: str, seed: int = 20260820) -> dict[str, object]
     return {
         "classification": classification,
         "pooling_ablation": pooling,
+        "transfer_learning_proxy": _transfer_proxy(train, valid, seed),
         "object_detection": _train_detector(data_dir, x, y, epochs, seed),
         "augmentation": ["horizontal flip", "Gaussian pixel noise"],
         "scope": "educational tiny variants; not canonical full-size ImageNet models",
