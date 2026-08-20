@@ -113,6 +113,17 @@ The `dev` extra installs an IPython kernel plus notebook validation tools. Jupyt
 tutorial entry points; tested implementation lives in `src/rookie_lab`. A notebook-first edition
 is maintained on the `codex/colab-notebook-first` branch.
 
+### Notebook-first branch
+
+Start with `notebooks/00_start_here.ipynb`, then run the numbered chapters in order. The branch
+contains 13 validated notebooks covering setup, data, classical ML, unsupervised learning and
+AutoML, deep learning, vision, NLP, graphs, tracking and SQL, FastAPI, testing and security, full
+reproduction, and the official skill matrix.
+
+The `.py`, `.yaml`, `.sql`, and workflow files intentionally remain in the branch: Colab notebooks
+call the tested package code, while those native files preserve imports, CI, database schemas, and
+reproducibility. The primary learning and editing path is entirely notebook-based.
+
 ## Release map
 
 - v0.1 Foundations and Data
