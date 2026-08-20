@@ -1,0 +1,52 @@
+{
+  "unsupervised": {
+    "rows": 1500,
+    "clustering": {
+      "kmeans": {
+        "clusters": 4,
+        "noise_rate": 0.0,
+        "silhouette": 0.13419696608782988
+      },
+      "dbscan": {
+        "clusters": 3,
+        "noise_rate": 0.262,
+        "silhouette": 0.016306535535443055
+      },
+      "agglomerative": {
+        "clusters": 4,
+        "noise_rate": 0.0,
+        "silhouette": 0.0847669424036197
+      }
+    },
+    "dimension_reduction": {
+      "pca_explained_variance": 0.41253645405934725,
+      "methods": [
+        "PCA",
+        "t-SNE",
+        "UMAP"
+      ]
+    }
+  },
+  "automl": {
+    "grid_search": {
+      "score": 0.7776458224614576,
+      "params": {
+        "model__C": 0.1
+      }
+    },
+    "random_search": {
+      "score": 0.7775737435372548,
+      "params": {
+        "model__n_estimators": 100,
+        "model__max_depth": 3
+      }
+    },
+    "optuna_tpe": {
+      "score": 0.7735486581906548,
+      "params": {
+        "trees": 44,
+        "depth": 5
+      }
+    }
+  }
+}
