@@ -10,8 +10,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-          cache: pip
-      - run: python -m pip install -e '.[full,dev]'
+      # PyPI's Linux torch wheel pulls multi-GB CUDA 13 packages and exhausts
+      # the hosted runner. Install the official CPU wheel first; the project
+      # requirement then reuses it instead of resolving a CUDA build.
+      - run: python -m pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m pip install --no-cache-dir -e '.[full,dev]'
       - run: python -m ruff check src scripts tests notebooks
       - run: python scripts/build_learning_notebooks.py --check notebooks
       - run: python scripts/build_system_notebooks.py --check notebooks
