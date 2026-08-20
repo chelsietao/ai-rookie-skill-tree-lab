@@ -1,0 +1,37 @@
+{
+  "tasks": [
+    "sentiment",
+    "intent/NLU",
+    "masked-language pre-training",
+    "text generation/NLG"
+  ],
+  "tfidf": {
+    "sentiment_roc_auc": 1.0,
+    "intent_accuracy": 1.0,
+    "features": "TF-IDF word unigrams and bigrams"
+  },
+  "bert": {
+    "architecture": "Hugging Face BERT with one encoder block and four attention heads",
+    "masked_language_pretraining_loss": [
+      4.788928508758545,
+      4.60084342956543,
+      4.458143711090088
+    ],
+    "from_scratch": {
+      "accuracy": 1.0,
+      "roc_auc": 1.0
+    },
+    "pretrained_then_finetuned": {
+      "accuracy": 1.0,
+      "roc_auc": 1.0
+    }
+  },
+  "gpt": {
+    "architecture": "Hugging Face GPT-2 style decoder with causal multi-head attention",
+    "final_loss": 1.0096129179000854,
+    "perplexity": 2.7445384476741626,
+    "greedy_generation": "helpful service question about account order 4"
+  },
+  "vocabulary_size": 121,
+  "offline": true
+}
