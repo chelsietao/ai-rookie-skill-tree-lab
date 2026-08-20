@@ -1,0 +1,17 @@
+{
+  "tensorboard": {
+    "event_files": 2,
+    "losses": [
+      1.0,
+      0.68,
+      0.43,
+      0.31
+    ]
+  },
+  "registry_rows": 1,
+  "compiled_rdbms_dialects": [
+    "mssql",
+    "mysql",
+    "sqlite"
+  ]
+}
