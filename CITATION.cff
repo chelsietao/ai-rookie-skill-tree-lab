@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this educational lab, cite it as follows."
+title: "AI Rookie Skill Tree Lab"
+type: software
+authors:
+  - family-names: Tao
+    given-names: Chelsie
+version: 1.0.0
+date-released: 2026-08-20
+license: MIT
+repository-code: "https://github.com/chelsietao/ai-rookie-skill-tree-lab"
+
