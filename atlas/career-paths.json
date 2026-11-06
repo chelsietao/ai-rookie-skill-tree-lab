@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-06",
+  "purpose": "Editorial career exploration, not an authoritative salary ranking or learning tracker",
+  "disclaimer": "評估為策略性質，不保證薪資、就業機會或抗 AI 取代程度。職缺、薪資與法規資訊需於使用時重新驗證。",
+  "nvidiaPdf": "NVIDIA Training and Certification Learning Paths, October 2026, user-provided PDF",
+  "recommendedPathId": "inference-compiler",
+  "paths": [
+    {
+      "id": "inference-compiler",
+      "title": "Inference Optimization & AI Compiler",
+      "priority": 1,
+      "focus": "recommended",
+      "summary": "模型推論、Kernel 與編譯器跨層最佳化，兼顧 Singapore AI infrastructure 與 Taiwan NPU/runtime 職位。",
+      "markets": {
+        "singapore": "LLM serving / platform / ML systems / inference teams",
+        "taiwan": "NPU compiler / runtime / edge AI / GPU software"
+      },
+      "skills": [
+        "C++",
+        "Python",
+        "Linux",
+        "PyTorch",
+        "Transformer",
+        "GPU Memory Hierarchy",
+        "KV Cache",
+        "PagedAttention",
+        "Continuous Batching",
+        "Quantization",
+        "torch.compile",
+        "Operator Fusion",
+        "LLVM",
+        "MLIR",
+        "Triton"
+      ],
+      "conceptIds": [
+        "cpp",
+        "python",
+        "attention",
+        "gpu-memory",
+        "kv-cache",
+        "paged-attention",
+        "continuous-batching",
+        "latency-throughput",
+        "torch-compile",
+        "operator-fusion",
+        "computation-graph",
+        "triton"
+      ],
+      "roles": [
+        "Inference Engineer",
+        "AI Runtime Engineer",
+        "AI Compiler Engineer",
+        "ML Systems Engineer"
+      ],
+      "tradeoffs": "高技術門檻、相關初階職缺較集中；需要效能量測與系統實作證據。",
+      "assessment": "跨市場遷移性與技術護城河高，為編輯判斷，非保證薪資排名。"
+    },
+    {
+      "id": "gpu-kernel",
+      "title": "GPU / CUDA Performance Engineering",
+      "priority": 2,
+      "summary": "以 CUDA、Triton、記憶體階層和 Profiling 打造高效能 GPU kernels。",
+      "markets": {
+        "singapore": "GPU software / AI optimization / accelerated computing",
+        "taiwan": "Semiconductor software / GPU and NPU performance"
+      },
+      "skills": [
+        "C++",
+        "CUDA",
+        "Triton",
+        "Warp",
+        "SM",
+        "Memory Coalescing",
+        "Occupancy",
+        "Nsight",
+        "GEMM"
+      ],
+      "conceptIds": [
+        "cpp",
+        "cuda",
+        "triton",
+        "gpu-memory",
+        "operator-fusion"
+      ],
+      "roles": [
+        "GPU Software Engineer",
+        "CUDA Engineer",
+        "Kernel Performance Engineer"
+      ],
+      "tradeoffs": "專門化程度高且需要適合的 GPU 測試環境；不少職缺要求深厚 C++ 與硬體知識。",
+      "assessment": "跨軟硬體的能力具有高度稀缺性；工作機會不等於所有 AI 軟體職位的數量。"
+    },
+    {
+      "id": "distributed-ai",
+      "title": "Distributed Training & AI Systems",
+      "priority": 3,
+      "summary": "多 GPU/節點訓練、Collective Communication、模型切分與可擴展系統。",
+      "markets": {
+        "singapore": "Large-model training, cloud AI platform, distributed systems",
+        "taiwan": "AI training platforms and accelerator infrastructure"
+      },
+      "skills": [
+        "Linux",
+        "Networking",
+        "PyTorch DDP",
+        "FSDP",
+        "ZeRO",
+        "NCCL",
+        "All-Reduce",
+        "Tensor Parallelism",
+        "Pipeline Parallelism"
+      ],
+      "conceptIds": [
+        "ddp",
+        "all-reduce",
+        "gpu-memory",
+        "model-serving"
+      ],
+      "roles": [
+        "Distributed ML Engineer",
+        "ML Infrastructure Engineer",
+        "AI Platform Engineer"
+      ],
+      "tradeoffs": "系統資源和真實多 GPU 環境較難取得；需要分散式除錯能力。",
+      "assessment": "基礎廣且有長期價值，與 serving、GPU 深度知識互補。"
+    },
+    {
+      "id": "ai-platform",
+      "title": "AI Platform / MLOps",
+      "priority": 4,
+      "summary": "可靠部署、容器、監控、特徵/模型管線與 Serving 平台。",
+      "markets": {
+        "singapore": "Cloud platform, enterprise AI, fintech infrastructure",
+        "taiwan": "Enterprise AI platform, semiconductor internal ML platforms"
+      },
+      "skills": [
+        "Python",
+        "Docker",
+        "Kubernetes",
+        "CI/CD",
+        "Observability",
+        "Serving",
+        "SQL",
+        "Security"
+      ],
+      "conceptIds": [
+        "python",
+        "model-serving",
+        "latency-throughput"
+      ],
+      "roles": [
+        "ML Platform Engineer",
+        "MLOps Engineer",
+        "AI Infrastructure Engineer"
+      ],
+      "tradeoffs": "職務範圍很廣，需區分模型系統工程與一般雲端維運。",
+      "assessment": "相對廣泛的就業適用性，但專業深度隨團隊與產品不同。"
+    },
+    {
+      "id": "applied-ml",
+      "title": "Applied Machine Learning / Computer Vision",
+      "priority": 5,
+      "summary": "模型建構、訓練、驗證與應用到工業/產品領域。",
+      "markets": {
+        "singapore": "Applied ML and product AI teams",
+        "taiwan": "Industrial vision, manufacturing AI, embedded AI"
+      },
+      "skills": [
+        "Python",
+        "Statistics",
+        "PyTorch",
+        "Model Evaluation",
+        "Computer Vision",
+        "Deployment"
+      ],
+      "conceptIds": [
+        "python",
+        "ml-evaluation",
+        "attention",
+        "model-serving"
+      ],
+      "roles": [
+        "Machine Learning Engineer",
+        "Computer Vision Engineer",
+        "Applied AI Engineer"
+      ],
+      "tradeoffs": "領域知識和資料品質是關鍵；只會訓練標準模型的差異化較低。",
+      "assessment": "台灣產業應用廣，若結合 domain expertise 與 deployment 很有價值。"
+    },
+    {
+      "id": "agent-app",
+      "title": "LLM Applications / Agent Engineering",
+      "priority": 6,
+      "summary": "RAG、工具調用、Agent 整合、工作流程和評估。",
+      "markets": {
+        "singapore": "Enterprise AI, SaaS and fintech applications",
+        "taiwan": "Enterprise applications and AI products"
+      },
+      "skills": [
+        "Python",
+        "RAG",
+        "Vector Search",
+        "Tool Calling",
+        "Evaluation",
+        "Security",
+        "API"
+      ],
+      "conceptIds": [
+        "python",
+        "rag",
+        "model-serving",
+        "ml-evaluation"
+      ],
+      "roles": [
+        "AI Engineer",
+        "LLM Application Engineer",
+        "Agent Engineer"
+      ],
+      "tradeoffs": "入門速度較快，框架與工具更新快速；需結合產品理解、評估與可靠性設計避免同質化。",
+      "assessment": "適合廣泛試水，但不建議只靠 prompt / API wrapping 當唯一技術核心。"
+    },
+    {
+      "id": "infra-ops",
+      "title": "AI Infrastructure Operations & Networking",
+      "priority": 7,
+      "summary": "GPU Cluster 部署、網路、InfiniBand、RDMA、設備和可靠營運。",
+      "markets": {
+        "singapore": "AI datacenters, cloud GPU infrastructure and operations",
+        "taiwan": "AI server / datacenter / systems infrastructure"
+      },
+      "skills": [
+        "Linux",
+        "Networking",
+        "Kubernetes",
+        "RDMA",
+        "InfiniBand",
+        "GPU Cluster",
+        "Monitoring"
+      ],
+      "conceptIds": [
+        "gpu-memory",
+        "ddp",
+        "all-reduce",
+        "model-serving"
+      ],
+      "roles": [
+        "AI Infrastructure Engineer",
+        "GPU Cluster Engineer",
+        "AI Networking Engineer"
+      ],
+      "tradeoffs": "與 AI Compiler 開發不同，更偏基礎設施整合、網路和營運。",
+      "assessment": "專業技能具韌性，但職務重心和研發取向需先釐清。"
+    }
+  ]
+}
