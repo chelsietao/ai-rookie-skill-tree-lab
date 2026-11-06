@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An independent AI Engineering Encyclopedia, focusing on inference, compilers and GPU systems.">
+<title>AI Engineering Atlas — Interactive Encyclopedia</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <a class="brand" href="#home"><span class="brand-symbol">✳</span><span>AI Engineering<br><strong>Atlas</strong></span></a>
+    <div class="sidebar-caption">DISCOVER</div>
+    <button id="home-link" class="nav-link selected">Overview</button>
+    <button id="all-link" class="nav-link">All concepts</button>
+    <div class="sidebar-caption">DOMAINS</div>
+    <nav id="category-nav" aria-label="Filter categories"></nav>
+    <div class="sidebar-bottom">Independent learning reference<br>No login · No tracking · No homework</div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div class="breadcrumb" id="breadcrumb">Encyclopedia / Overview</div><span class="topbar-tag">AI INFRASTRUCTURE FOCUS</span></header>
+    <section class="hero" id="hero">
+      <p class="eyebrow">EXPLORE THE SYSTEMS BEHIND AI</p>
+      <h1>Understand how<br><em>AI actually works.</em></h1>
+      <p class="intro">從 Python、機器學習、LLM 到 GPU Kernel、Inference Optimization 與 Compiler。點擊任何技術名詞，深入理解它的原理及企業應用。</p>
+      <div class="hero-stats"><span><strong id="total-count">—</strong> concepts</span><span><strong id="focus-count">—</strong> deep-dive articles</span><span>Open reference atlas</span></div>
+    </section>
+    <div class="toolbar">
+      <label class="search"><span>⌕</span><input id="search" placeholder="搜尋技術名詞，如 KV Cache、Triton、Attention..." autocomplete="off" aria-label="Search concepts"></label>
+      <button id="reset" class="subtle-button">Reset filters</button>
+    </div>
+    <section id="home-view"><div class="section-heading"><div><p class="eyebrow">PRIORITY AREAS</p><h2>Focus on infrastructure.</h2></div><p>Browse by area or follow relationships between concepts.</p></div><div id="focus-grid" class="focus-grid"></div><div class="section-heading spacing"><div><p class="eyebrow">KNOWLEDGE MAP</p><h2>Explore connections.</h2></div><p>Click any node to read its article.</p></div><div id="graph" class="graph"></div></section>
+    <section id="list-view" hidden><div class="section-heading"><div><p class="eyebrow">THE KNOWLEDGE LIBRARY</p><h2 id="list-title">All concepts</h2></div><span id="result-count" class="count"></span></div><div class="list-grid" id="concept-list"></div><div id="empty" class="empty" hidden>找不到符合的技術名詞，請改用其他關鍵字。</div></section>
+    <article id="article-view" hidden><button id="back" class="back">← Back to atlas</button><div id="article"></div></article>
+    <footer>AI Engineering Atlas · Original educational reference · Official sources linked in each entry</footer>
+  </main>
+</div>
+<script src="./data.js"></script><script src="./app.js"></script>
+</body>
+</html>
