@@ -173,13 +173,16 @@ export default function HomePage() {
                   <Link
                     key={concept.id}
                     href={`/concepts/${concept.id}`}
-                    className="p-4 border border-slate-200 rounded-lg hover:border-brand-400 hover:bg-brand-50 transition"
+                    className="block p-4 border border-slate-200 rounded-lg hover:border-brand-500 hover:bg-brand-50 hover:shadow-md transition cursor-pointer group"
                   >
-                    <div className="font-semibold text-slate-900">
+                    <div className="font-semibold text-slate-900 group-hover:text-brand-600">
                       {concept.title}
                     </div>
-                    <div className="text-sm text-slate-600 mt-1">
+                    <div className="text-sm text-slate-600 mt-1 group-hover:text-slate-700">
                       {concept.zh}
+                    </div>
+                    <div className="text-xs text-slate-400 mt-2 group-hover:text-brand-400">
+                      → 深入了解
                     </div>
                   </Link>
                 ))}
