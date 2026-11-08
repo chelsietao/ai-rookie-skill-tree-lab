@@ -4,13 +4,12 @@ export function searchConcepts(
   concepts: Concept[],
   query: string
 ): Concept[] {
-  if (!query.trim()) return concepts;
-
-  const lowerQuery = query.toLowerCase();
+  const lowerQuery = query.trim().toLowerCase();
+  if (!lowerQuery) return concepts;
 
   return concepts.filter((concept) => {
     const titleMatch = concept.title.toLowerCase().includes(lowerQuery);
-    const zhMatch = concept.zh.includes(query);
+    const zhMatch = concept.zh.toLowerCase().includes(lowerQuery);
     const summaryMatch = concept.summary.toLowerCase().includes(lowerQuery);
     const categoryMatch = concept.category.toLowerCase().includes(lowerQuery);
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, type FormEvent } from "react";
 import Link from "next/link";
 import { concepts } from "@/data/concepts";
 import { searchConcepts, getCategories, filterByCategory } from "@/lib/search";
@@ -24,10 +24,10 @@ export default function HomePage() {
 
   const publishedConcepts = useMemo(
     () =>
-      filteredConcepts.filter(
+      concepts.filter(
         (c) => c.status === "published" || c.status === "reviewed"
       ),
-    [filteredConcepts]
+    []
   );
 
   const focusConcepts = useMemo(
@@ -35,9 +35,17 @@ export default function HomePage() {
     []
   );
 
+  const resultsRef = useRef<HTMLElement>(null);
+  const isFiltering = searchQuery.trim() !== "" || selectedCategory !== "";
+
   const handleReset = () => {
     setSearchQuery("");
     setSelectedCategory("");
+  };
+
+  const handleSearchSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    resultsRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -116,7 +124,10 @@ export default function HomePage() {
 
             {/* Search & Filters */}
             <section className="mb-8">
-              <div className="flex gap-4 items-center mb-4">
+              <form
+                onSubmit={handleSearchSubmit}
+                className="flex gap-4 items-center mb-4"
+              >
                 <div className="flex-1">
                   <input
                     type="text"
@@ -128,13 +139,14 @@ export default function HomePage() {
                 </div>
                 {(searchQuery || selectedCategory) && (
                   <button
+                    type="button"
                     onClick={handleReset}
                     className="px-4 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition"
                   >
                     Reset
                   </button>
                 )}
-              </div>
+              </form>
 
               {/* Category Filter */}
               <div className="flex flex-wrap gap-2">
@@ -164,6 +176,27 @@ export default function HomePage() {
               </div>
             </section>
 
+            {isFiltering ? (
+              <section ref={resultsRef} className="mb-16 scroll-mt-24">
+                <p className="text-slate-600 mb-6">
+                  找到 {filteredConcepts.length} 個技術名詞
+                </p>
+                {filteredConcepts.length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {filteredConcepts.map((concept) => (
+                      <ConceptCard key={concept.id} concept={concept} />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-12">
+                    <p className="text-slate-600">
+                      找不到符合的技術名詞，請改用其他關鍵字。
+                    </p>
+                  </div>
+                )}
+              </section>
+            ) : (
+              <>
             {/* Priority Areas */}
             <section className="mb-16">
               <div className="mb-8">
@@ -206,9 +239,11 @@ export default function HomePage() {
               </div>
 
               <div className="h-96 border border-slate-200 rounded-lg overflow-hidden bg-slate-50">
-                <ConceptGraph concepts={filteredConcepts} />
+                <ConceptGraph concepts={concepts} />
               </div>
             </section>
+              </>
+            )}
 
             {/* CTA */}
             <section className="text-center py-12 border-t border-slate-200">
