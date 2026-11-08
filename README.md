@@ -1,82 +1,103 @@
-AI Engineering Atlas
+# AI Engineering Atlas：AI 工程技術名詞知識圖譜
 
-一份為 AI 工程師設計的專業技術知識百科。涵蓋 100+ 個概念，分布於 9 個技術領域，包括推論優化、編譯器工程、GPU 運算、深度學習、分散式系統、大型語言模型、訓練與 MLOps、程式設計與計算機科學以及數學與機器學習。
+線上網站：https://chelsietao.github.io/ai-rookie-skill-tree-lab/
 
-功能
+AI Engineering Atlas 是一個以繁體中文撰寫的 AI 工程技術名詞百科。專題整理了從模型訓練、推論優化、編譯器到 GPU 運算與分散式系統的 100 個技術概念，並呈現概念之間的關係，讓讀者能從任何一個名詞出發，理解它的原理、用途與相關技術。
 
-100+ 個完整概念。每個概念包含 8 個章節：基本概念、存在意義、實現原理、架構圖解、程式範例、產業案例、相關概念、官方資源。
+## 專題內容
 
-互動知識圖。視覺化呈現概念之間的關係，邊界類型包括前置條件、相關連結、使用關係、實現方式、優化方式、替代方案、組成部分。
+### 100 個技術概念
 
-雙語搜尋。支援英文和繁體中文搜尋，即時篩選結果。
+概念分為 10 個領域：
 
-9 個技術領域。推論優化、編譯器工程、GPU 運算、深度學習、分散式系統、大型語言模型與代理、訓練與 MLOps、程式設計與計算機科學、數學與機器學習。
+- Inference Optimization（推論優化）
+- Compiler Engineering（編譯器工程）
+- GPU Computing（GPU 運算）
+- Deep Learning（深度學習）
+- Distributed Systems（分散式系統）
+- LLM Training（大型語言模型訓練）
+- LLM & Agents（大型語言模型與代理）
+- Data & MLOps（資料與機器學習維運）
+- Machine Learning（機器學習）
+- Programming（程式設計）
 
-7 條職業方向。包含以下專業方向：推論優化與 AI 編譯器（推薦）、GPU/CUDA 性能工程、分散式訓練與 AI 系統、AI 平台與 MLOps、應用機器學習與計算機視覺、大型語言模型應用與代理工程、AI 基礎設施運維與網路。
+每個概念依固定結構撰寫，包含：摘要、直覺理解、運作機制、架構圖、程式碼範例、產業案例、相關概念與參考來源。
 
-簡潔設計。白色背景，桌面和行動裝置均完全支援。
+### 概念關係圖
 
-快速開始
+概念之間以七種關係連結：前置知識、相關、應用於、實作、優化、替代方案、組成部分。首頁的關係圖可用來瀏覽概念之間的脈絡。
 
-需求：Node.js 18 及以上版本，npm
+### 搜尋與篩選
 
-開發環境：
+支援以英文或中文名詞搜尋，並可依領域篩選。
+
+### 七條職業方向
+
+整理七個 AI 工程職業方向，每一條說明所需技能、對應概念、常見職稱，以及新加坡與台灣兩地的市場背景：
+
+1. 推論優化與 AI 編譯器
+2. GPU / CUDA 效能工程
+3. 分散式訓練與 AI 系統
+4. AI 平台與 MLOps
+5. 應用機器學習與電腦視覺
+6. 大型語言模型應用與 Agent 工程
+7. AI 基礎設施維運與網路
+
+職業方向的評估屬於編輯判斷，不是薪資排名，也不構成就業保證。
+
+### 內容狀態
+
+每個概念標示內容狀態，分為 glossary、draft、reviewed、published 四種，用以區分內容的完整程度。
+
+### 語言原則
+
+介面與說明使用繁體中文，技術術語保留英文，避免翻譯造成誤解。
+
+## 技術架構
+
+- Next.js 15（App Router，靜態匯出）
+- React 19
+- TypeScript
+- Tailwind CSS
+- 概念與職業資料以 TypeScript 檔案維護，無需資料庫
+- 以 GitHub Actions 部署至 GitHub Pages
+
+## 專案結構
+
+```
+src/
+  app/
+    page.tsx              首頁：概念關係圖、搜尋、領域篩選
+    concepts/             概念列表與單一概念頁面
+    careers/              職業方向頁面
+  components/             ConceptCard、ConceptGraph
+  data/
+    concepts.ts           彙整所有概念
+    concepts/             依領域拆分的概念資料
+    careerPaths.ts        七條職業方向
+  lib/search.ts           搜尋與篩選邏輯
+  types/index.ts          型別定義
+```
+
+## 在本機執行
+
+需要 Node.js 18 以上。
+
 ```bash
 npm install
 npm run dev
 ```
-開啟 http://localhost:3000
 
-生產環境：
+開啟 http://localhost:3000/ai-rookie-skill-tree-lab/ 即可瀏覽。
+
+建置靜態網站：
+
 ```bash
 npm run build
-npm start
 ```
 
-專案結構
+輸出位於 `out/` 目錄。
 
-```
-src/
-├── app/                    # Next.js 應用程式路由
-│   ├── page.tsx            # 首頁與知識圖
-│   ├── concepts/page.tsx   # 所有概念列表
-│   ├── concepts/[slug]/    # 個別概念詳情頁
-│   └── careers/page.tsx    # 職業方向探索
-├── components/             # React 元件
-├── data/                   # 概念與職業路徑資料
-│   ├── concepts.ts         # 概念彙總
-│   ├── concepts/           # 按領域組織的概念檔案
-│   └── careerPaths.ts      # 職業方向定義
-├── types/                  # TypeScript 型別定義
-└── lib/                    # 工具函數
-```
-
-內容結構
-
-每個概念遵循一致的 8 章節框架。包含標題、所屬領域、難度等級，以及 8 個章節的詳細內容。內容狀態可追蹤為詞彙表、草稿、審核、已發布等級。
-
-語言政策
-
-用戶介面與導航採用繁體中文（台灣）。技術術語保留英文以確保準確性。內容根據需要雙語呈現。
-
-技術棧
-
-框架：Next.js 14+ 搭配 TypeScript
-樣式：Tailwind CSS
-元件：React 自訂元件
-資料：TypeScript 物件（易於擴展至內容管理系統）
-部署：GitHub Pages
-
-統計資訊
-
-100+ 概念，分布於 9 個技術領域。7 條職業方向。200+ 個概念關係映射。支援英文與繁體中文。內容狀態分為詞彙表、草稿、審核、已發布四個等級。
-
-授權
+## 授權
 
 MIT
-
----
-
-與 Claude Code 協作開發
-
-Co-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>
