@@ -184,6 +184,25 @@ export default async function ConceptPage({ params }: PageProps) {
             </section>
           )}
 
+          {concept.papers && concept.papers.length > 0 && (
+            <section className="mb-12">
+              <h2>相關 Paper</h2>
+              <ul>
+                {concept.papers.map((paper) => (
+                  <li key={paper.url}>
+                    <a href={paper.url} target="_blank" rel="noopener noreferrer">
+                      {paper.title}
+                    </a>{" "}
+                    <span className="text-sm text-slate-500">
+                      ({paper.venue}, {paper.year})
+                    </span>
+                    <div className="text-sm text-slate-600">{paper.note}</div>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
           {/* Section 7: Official Resources */}
           {concept.sources && concept.sources.length > 0 && (
             <section className="mb-12">

@@ -11,6 +11,14 @@ export type EdgeType =
 
 export type ConceptSource = [string, string];  // [title, url]
 
+export interface ConceptPaper {
+  title: string;
+  venue: string;
+  year: number;
+  url: string;
+  note: string;
+}
+
 export interface Concept {
   id: string;
   title: string;
@@ -27,6 +35,7 @@ export interface Concept {
   case?: string;
   related: string[];
   sources: ConceptSource[];
+  papers?: ConceptPaper[];
   status: ContentStatus;
   lastVerified?: string;
 }

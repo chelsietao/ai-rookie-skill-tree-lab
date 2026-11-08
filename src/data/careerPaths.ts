@@ -1,4 +1,6 @@
 import type { CareerPath } from "@/types";
+import { compilerExtendedConcepts } from "./concepts/compiler-extended";
+import { inferenceExtendedConcepts } from "./concepts/inference-extended";
 
 export const careerPaths: CareerPath[] = [
   {
@@ -43,6 +45,23 @@ export const careerPaths: CareerPath[] = [
       "operator-fusion",
       "computation-graph",
       "triton",
+      "flash-attention",
+      "speculative-decoding",
+      "quantization",
+      "prefix-caching",
+      "chunked-prefill",
+      "grouped-query-attention",
+      "prefill-decode-disaggregation",
+      "sampling-decoding",
+      "vllm",
+      "xla",
+      "mlir",
+      "onnx",
+      "onnx-runtime",
+      "tensorrt",
+      "torch-inductor",
+      ...inferenceExtendedConcepts.map((c) => c.id),
+      ...compilerExtendedConcepts.map((c) => c.id),
     ],
     roles: [
       "Inference Engineer",

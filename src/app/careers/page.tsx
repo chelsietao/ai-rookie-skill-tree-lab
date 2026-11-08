@@ -4,6 +4,8 @@ import Link from "next/link";
 import { careerPaths } from "@/data/careerPaths";
 import { concepts } from "@/data/concepts";
 
+const CONCEPT_PREVIEW_COUNT = 12;
+
 export default function CareersPage() {
   return (
     <div className="min-h-screen bg-white">
@@ -72,6 +74,15 @@ export default function CareersPage() {
             const pathConcepts = path.conceptIds
               .map((id) => concepts.find((c) => c.id === id))
               .filter((c) => c !== undefined);
+            const pathPapers = Array.from(
+              new Map(
+                pathConcepts
+                  .flatMap((c) => c.papers ?? [])
+                  .map((paper) => [paper.url, paper])
+              ).values()
+            ).sort((a, b) => a.year - b.year);
+            const visibleConcepts = pathConcepts.slice(0, CONCEPT_PREVIEW_COUNT);
+            const moreConcepts = pathConcepts.slice(CONCEPT_PREVIEW_COUNT);
 
             return (
               <section
@@ -159,10 +170,10 @@ export default function CareersPage() {
                 {pathConcepts.length > 0 && (
                   <div className="mb-8">
                     <h3 className="text-sm font-semibold text-slate-700 mb-3">
-                      Related Encyclopedia Entries
+                      Related Encyclopedia Entries（{pathConcepts.length}）
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                      {pathConcepts.map((concept) => (
+                      {visibleConcepts.map((concept) => (
                         <Link
                           key={concept.id}
                           href={`/concepts/${concept.id}`}
@@ -172,7 +183,51 @@ export default function CareersPage() {
                         </Link>
                       ))}
                     </div>
+                    {moreConcepts.length > 0 && (
+                      <details className="mt-3">
+                        <summary className="cursor-pointer text-sm font-medium text-slate-700 hover:text-slate-900">
+                          顯示其餘 {moreConcepts.length} 個詞彙
+                        </summary>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+                          {moreConcepts.map((concept) => (
+                            <Link
+                              key={concept.id}
+                              href={`/concepts/${concept.id}`}
+                              className="text-sm text-brand-600 hover:text-brand-700 hover:underline p-2 rounded hover:bg-brand-100 transition"
+                            >
+                              {concept.title}
+                            </Link>
+                          ))}
+                        </div>
+                      </details>
+                    )}
                   </div>
+                )}
+
+                {pathPapers.length > 0 && (
+                  <details className="mb-8">
+                    <summary className="cursor-pointer text-sm font-semibold text-slate-700 hover:text-slate-900">
+                      相關 Paper（{pathPapers.length}）
+                    </summary>
+                    <ul className="mt-3 space-y-3">
+                      {pathPapers.map((paper) => (
+                        <li key={paper.url} className="text-sm">
+                          <a
+                            href={paper.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-brand-600 hover:text-brand-700 hover:underline"
+                          >
+                            {paper.title}
+                          </a>{" "}
+                          <span className="text-slate-500">
+                            ({paper.venue}, {paper.year})
+                          </span>
+                          <div className="text-slate-600">{paper.note}</div>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
                 )}
 
                 {/* Assessment */}

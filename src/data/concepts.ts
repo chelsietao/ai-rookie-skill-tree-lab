@@ -8,6 +8,9 @@ import { trainingConcepts } from "./concepts/training";
 import { llmAgentConcepts } from "./concepts/llm-agents";
 import { mlopsConcepts } from "./concepts/mlops";
 import { mlProgrammingConcepts } from "./concepts/ml-programming";
+import { inferenceExtendedConcepts } from "./concepts/inference-extended";
+import { compilerExtendedConcepts } from "./concepts/compiler-extended";
+import { existingConceptPapers } from "./concepts/papers";
 
 const baseConcepts: Concept[] = [
   {
@@ -409,6 +412,8 @@ export const concepts: Concept[] = [
   ...baseConcepts,
   ...inferenceConcepts,
   ...compilerConcepts,
+  ...inferenceExtendedConcepts,
+  ...compilerExtendedConcepts,
   ...gpuConcepts,
   ...deepLearningConcepts,
   ...distributedConcepts,
@@ -416,4 +421,7 @@ export const concepts: Concept[] = [
   ...llmAgentConcepts,
   ...mlopsConcepts,
   ...mlProgrammingConcepts,
-];
+].map((concept) => ({
+  ...concept,
+  papers: concept.papers ?? existingConceptPapers[concept.id],
+}));
