@@ -1,6 +1,15 @@
 import type { Concept } from "@/types";
+import { inferenceConcepts } from "./concepts/inference";
+import { compilerConcepts } from "./concepts/compiler";
+import { gpuConcepts } from "./concepts/gpu";
+import { deepLearningConcepts } from "./concepts/deep-learning";
+import { distributedConcepts } from "./concepts/distributed";
+import { trainingConcepts } from "./concepts/training";
+import { llmAgentConcepts } from "./concepts/llm-agents";
+import { mlopsConcepts } from "./concepts/mlops";
+import { mlProgrammingConcepts } from "./concepts/ml-programming";
 
-export const concepts: Concept[] = [
+const baseConcepts: Concept[] = [
   {
     id: "kv-cache",
     title: "KV Cache",
@@ -268,6 +277,10 @@ def add_kernel(X, Y, OUT, N: tl.constexpr, BLOCK: tl.constexpr):
         "NVIDIA CUDA programming guide",
         "https://docs.nvidia.com/cuda/cuda-programming-guide/",
       ],
+      [
+        "CUDA C++ Best Practices Guide",
+        "https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/",
+      ],
     ],
   },
   {
@@ -299,12 +312,13 @@ v = torch.randn(1, 4, 8)
 out = torch.nn.functional.scaled_dot_product_attention(q, k, v, is_causal=True)`,
     caseTitle: "PyTorch — Scaled Dot Product Attention",
     case: "PyTorch 公開提供 scaled_dot_product_attention API 與後端最佳化實作，讓模型利用支援的加速路徑。",
-    related: ["kv-cache", "paged-attention", "triton"],
+    related: ["kv-cache", "paged-attention", "triton", "transformer", "flash-attention"],
     sources: [
       [
         "PyTorch scaled_dot_product_attention",
         "https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html",
       ],
+      ["Attention Is All You Need", "https://arxiv.org/abs/1706.03762"],
     ],
   },
   {
@@ -336,11 +350,15 @@ model = torch.nn.Sequential(torch.nn.Linear(4, 4), torch.nn.ReLU())
 print(symbolic_trace(model).graph)`,
     caseTitle: "PyTorch — FX graph transformations",
     case: "PyTorch FX 提供可檢視和轉換的圖表示方式，供圖層級分析與工具建置使用。",
-    related: ["torch-compile", "operator-fusion"],
+    related: ["torch-compile", "operator-fusion", "autograd", "xla"],
     sources: [
       [
         "PyTorch FX documentation",
         "https://docs.pytorch.org/docs/stable/fx.html",
+      ],
+      [
+        "PyTorch autograd mechanics",
+        "https://docs.pytorch.org/docs/stable/notes/autograd.html",
       ],
     ],
   },
@@ -373,132 +391,29 @@ print('sample median ms:', (latencies_ms[1]+latencies_ms[2])/2)
 # Real benchmarks require much larger samples.`,
     caseTitle: "NVIDIA Triton Inference Server — Performance Analyzer",
     case: "NVIDIA Triton Inference Server 提供效能分析工具，協助評估推論延遲和吞吐量，並依實際服務工作負載調整設定。",
-    related: ["continuous-batching", "model-serving", "kv-cache"],
+    related: ["continuous-batching", "model-serving", "kv-cache", "roofline-model"],
     sources: [
       [
         "Triton Inference Server docs",
         "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/",
       ],
-    ],
-  },
-  {
-    id: "cuda",
-    title: "CUDA",
-    zh: "NVIDIA GPU 平行運算平台",
-    category: "GPU Computing",
-    level: "Glossary",
-    status: "glossary",
-    summary:
-      "NVIDIA GPU 運算平台與程式設計模型，涵蓋 kernel、block、thread、memory 與 streams。",
-    related: ["triton", "gpu-memory", "operator-fusion"],
-    sources: [
-      ["CUDA guide", "https://docs.nvidia.com/cuda/cuda-programming-guide/"],
-    ],
-  },
-  {
-    id: "model-serving",
-    title: "Model Serving",
-    zh: "模型線上服務",
-    category: "Data & MLOps",
-    level: "Glossary",
-    status: "glossary",
-    summary:
-      "把模型部署成可靠、可擴展、可量測的線上服務，處理併發、版本、延遲與失敗。",
-    related: ["latency-throughput", "continuous-batching"],
-    sources: [
       [
-        "NVIDIA Triton Inference Server",
-        "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/",
+        "Efficient Memory Management for LLM Serving with PagedAttention",
+        "https://arxiv.org/abs/2309.06180",
       ],
     ],
   },
-  {
-    id: "ddp",
-    title: "Distributed Data Parallel",
-    zh: "分散式資料平行",
-    category: "Distributed Systems",
-    level: "Glossary",
-    status: "glossary",
-    summary:
-      "不同 worker 處理不同資料切片並同步梯度，提高訓練的總處理量。",
-    related: ["all-reduce", "gpu-memory"],
-    sources: [
-      [
-        "PyTorch DDP",
-        "https://docs.pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html",
-      ],
-    ],
-  },
-  {
-    id: "all-reduce",
-    title: "All-Reduce",
-    zh: "全域歸約",
-    category: "Distributed Systems",
-    level: "Glossary",
-    status: "glossary",
-    summary:
-      "跨 worker 彙總數值並將結果分發給所有參與者，常用於梯度同步。",
-    related: ["ddp"],
-    sources: [
-      [
-        "PyTorch distributed",
-        "https://docs.pytorch.org/docs/stable/distributed.html",
-      ],
-    ],
-  },
-  {
-    id: "python",
-    title: "Python",
-    zh: "Python 程式語言",
-    category: "Programming",
-    level: "Glossary",
-    status: "glossary",
-    summary: "AI 原型、資料處理、框架 API 與系統協作常用語言。",
-    related: ["attention", "torch-compile"],
-    sources: [["Python documentation", "https://docs.python.org/3/"]],
-  },
-  {
-    id: "cpp",
-    title: "Modern C++",
-    zh: "現代 C++",
-    category: "Programming",
-    level: "Glossary",
-    status: "glossary",
-    summary: "高效能系統、推論引擎與 GPU host-side 開發的重要語言。",
-    related: ["cuda", "model-serving"],
-    sources: [["C++ reference", "https://isocpp.org/"]],
-  },
-  {
-    id: "rag",
-    title: "Retrieval-Augmented Generation",
-    zh: "檢索增強生成",
-    category: "LLM & Agents",
-    level: "Glossary",
-    status: "glossary",
-    summary: "先檢索外部資料，再將檢索結果提供給語言模型作答。",
-    related: ["attention", "model-serving"],
-    sources: [
-      [
-        "Hugging Face RAG",
-        "https://huggingface.co/docs/transformers/model_doc/rag",
-      ],
-    ],
-  },
-  {
-    id: "ml-evaluation",
-    title: "ML Evaluation",
-    zh: "機器學習評估",
-    category: "Machine Learning",
-    level: "Glossary",
-    status: "glossary",
-    summary:
-      "以合適的切分、指標、基準線與錯誤分析衡量模型能力。",
-    related: ["latency-throughput"],
-    sources: [
-      [
-        "scikit-learn model evaluation",
-        "https://scikit-learn.org/stable/modules/model_evaluation.html",
-      ],
-    ],
-  },
+];
+
+export const concepts: Concept[] = [
+  ...baseConcepts,
+  ...inferenceConcepts,
+  ...compilerConcepts,
+  ...gpuConcepts,
+  ...deepLearningConcepts,
+  ...distributedConcepts,
+  ...trainingConcepts,
+  ...llmAgentConcepts,
+  ...mlopsConcepts,
+  ...mlProgrammingConcepts,
 ];
