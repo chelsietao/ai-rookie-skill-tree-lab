@@ -45,6 +45,10 @@ AI Engineering Atlas 是一個以繁體中文撰寫的 AI 工程技術名詞百�
 
 職業方向的評估屬於編輯判斷，不是薪資排名，也不構成就業保證。
 
+### CI/CD 說明頁
+
+網站內附 CI/CD 頁面（/pipeline），說明本專案如何以 GitHub Actions 自動建置與部署，並列出四個 workflow 的觸發時機與用途。
+
 ### 內容狀態
 
 每個概念標示內容狀態，分為 glossary、draft、reviewed、published 四種，用以區分內容的完整程度。

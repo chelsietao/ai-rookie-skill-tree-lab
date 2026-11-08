@@ -63,6 +63,12 @@ export default async function ConceptPage({ params }: PageProps) {
             >
               Career Paths
             </Link>
+            <Link
+              href="/pipeline"
+              className="text-slate-700 hover:text-slate-900 font-medium"
+            >
+              CI/CD
+            </Link>
           </nav>
         </div>
       </header>
